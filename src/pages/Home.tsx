@@ -1,12 +1,32 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
 import Pokemons from '../components/pokemons';
+import React from 'react';
 
 const Home = () => {
-  const { data } = useQuery({
+  // const { data } = useQuery({
+  //   queryKey: ['pokemons'],
+  //   queryFn: () => getPoketmonListAll({}),
+  // });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
     queryKey: ['pokemons'],
-    queryFn: () => getPoketmonListAll({}),
+    queryFn: getPoketmonListAll,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
   });
+  console.log(data);
+
+  if (status === 'pending') {
+    return <span>loading</span>;
+  }
 
   return (
     <div className='container mx-auto flex flex-col border-2  justify-center items-center'>
@@ -20,8 +40,12 @@ const Home = () => {
 
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5  gap-2'>
         {data &&
-          data?.results.map((poke) => (
-            <Pokemons key={poke.url} name={poke.name} />
+          data?.pages.map((group, i) => (
+            <React.Fragment key={i}>
+              {group?.results?.map((project) => (
+                <Pokemons key={project.id} name={project.name} />
+              ))}
+            </React.Fragment>
           ))}
       </div>
     </div>

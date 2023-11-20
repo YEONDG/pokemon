@@ -6,7 +6,7 @@ export const getPokemonWithId = async (name: string) => {
 };
 
 const OFFSET = 20;
-export const getPoketmonListAll = async ({ pageParam = 0 }) => {
+export const getPoketmonListAll = async ({ pageParam }) => {
   const { data } = await instanse.get('pokemon', {
     params: { limit: OFFSET, offset: pageParam },
   });
