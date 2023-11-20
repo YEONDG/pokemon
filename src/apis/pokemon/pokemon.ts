@@ -1,8 +1,19 @@
-import axios from 'axios';
+import instanse from '../../utils/axios';
 
-export const getPokemons = async () => {
-  const data = await axios
-    .get('https://pokeapi.co/api/v2/pokemon/')
-    .then((res) => res.data);
+export const getPokemonWithId = async (name: string) => {
+  const { data } = await instanse.get(`pokemon/${name}`);
+  return data;
+};
+
+const OFFSET = 20;
+export const getPoketmonListAll = async ({ pageParam = 0 }) => {
+  const { data } = await instanse.get('pokemon', {
+    params: { limit: OFFSET, offset: pageParam },
+  });
+  return data;
+};
+
+export const getPokemonWithSpec = async (name: string) => {
+  const { data } = await instanse.get(`pokemon-species/${name}`);
   return data;
 };
