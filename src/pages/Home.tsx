@@ -23,6 +23,7 @@ const Home = () => {
     getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
   });
   console.log(data);
+  console.log(hasNextPage);
 
   if (status === 'pending') {
     return <span>loading</span>;
