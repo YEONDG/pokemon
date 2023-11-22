@@ -2,12 +2,14 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
 import Pokemons from '../components/pokemons';
 import React from 'react';
+import { useIntersect } from '../hooks/useIntersect';
 
 const Home = () => {
   // const { data } = useQuery({
   //   queryKey: ['pokemons'],
   //   queryFn: () => getPoketmonListAll({}),
   // });
+  // const ref = useIntersect();
   const {
     data,
     error,
@@ -20,10 +22,19 @@ const Home = () => {
     queryKey: ['pokemons'],
     queryFn: getPoketmonListAll,
     initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
+    getNextPageParam: (lastPage, pages) => {
+      const { next } = lastPage;
+      if (!next) return undefined;
+      return Number(new URL(next).searchParams.get('offset'));
+    },
   });
-  console.log(data);
-  console.log(hasNextPage);
+
+  const ref = useIntersect(async (entry, observer) => {
+    observer.unobserve(entry.target);
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   if (status === 'pending') {
     return <span>loading</span>;
@@ -49,6 +60,19 @@ const Home = () => {
             </React.Fragment>
           ))}
       </div>
+      <div ref={ref}>
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+        >
+          {isFetchingNextPage
+            ? 'Loading more...'
+            : hasNextPage
+            ? 'Load More'
+            : 'Nothing more to load'}
+        </button>
+      </div>
+      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
     </div>
   );
 };
