@@ -12,15 +12,29 @@ import {
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ErrorPage from './error-page';
+import PokemonDetail from './pages/pokemon/[name]';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/pokemon/:name',
+    element: <PokemonDetail />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

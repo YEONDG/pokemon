@@ -5,11 +5,6 @@ import React from 'react';
 import { useIntersect } from '../hooks/useIntersect';
 
 const Home = () => {
-  // const { data } = useQuery({
-  //   queryKey: ['pokemons'],
-  //   queryFn: () => getPoketmonListAll({}),
-  // });
-  // const ref = useIntersect();
   const {
     data,
     error,
@@ -50,7 +45,7 @@ const Home = () => {
       </div>
       {/* 리스트 */}
 
-      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5  gap-2'>
+      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4  gap-2'>
         {data &&
           data?.pages.map((group, i) => (
             <React.Fragment key={i}>
