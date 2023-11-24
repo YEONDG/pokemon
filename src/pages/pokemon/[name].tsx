@@ -1,14 +1,32 @@
 import { useLocation } from 'react-router-dom';
-import usePokemonData from '../../hooks/usePokemonData';
+import { useQuery } from '@tanstack/react-query';
+import {
+  getPokemonWithId,
+  getPokemonWithSpec,
+} from '../../apis/pokemon/pokemon';
 
 const PokemonDetail = () => {
   const { pathname } = useLocation();
   const name = pathname.split('/')[2];
-  const { pokemonInfo, pokemonSpeciesInfo } = usePokemonData(name);
 
-  console.log(pokemonInfo);
+  const { data: pokemonInfo } = useQuery({
+    queryKey: [`${name}`, name],
+    queryFn: () => getPokemonWithId(name),
+    enabled: !!name,
+    staleTime: 1000 * 60 * 60,
+  });
+
+  const { data: pokemonSpeciesInfo } = useQuery({
+    queryKey: [`${name}Spec`, name],
+    queryFn: () => getPokemonWithSpec(name),
+    enabled: !!name,
+    staleTime: 1000 * 60 * 60,
+  });
+
+  // console.log('info', pokemonInfo);
+  // console.log('ispec', pokemonInfo);
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center'>
       <img className='h-40 w-40' src={pokemonInfo?.sprites?.front_default} />
       <div>{pokemonSpeciesInfo?.names[2].name}</div>
     </div>

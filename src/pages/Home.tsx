@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
 import Pokemons from '../components/pokemons';
 import React from 'react';
@@ -22,7 +22,9 @@ const Home = () => {
       if (!next) return undefined;
       return Number(new URL(next).searchParams.get('offset'));
     },
+    staleTime: 1000 * 60 * 60,
   });
+  console.log(data);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -31,12 +33,8 @@ const Home = () => {
     }
   });
 
-  if (status === 'pending') {
-    return <span>loading</span>;
-  }
-
   return (
-    <div className='container mx-auto flex flex-col border-2  justify-center items-center'>
+    <div className='flex flex-col justify-center items-center'>
       {/* 타이틀 */}
       <div className='flex justify-center my-10'>
         <div className='text-3xl'>포켓몬</div>

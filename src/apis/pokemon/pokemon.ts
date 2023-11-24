@@ -1,5 +1,4 @@
 import instanse from '../../utils/axios';
-import { useQuery } from '@tanstack/react-query';
 
 export const getPokemonWithId = async (name: string) => {
   const { data } = await instanse.get(`pokemon/${name}`);

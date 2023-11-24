@@ -2,14 +2,26 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPokemonWithId, getPokemonWithSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
-import usePokemonData from '../hooks/usePokemonData';
 
 interface PokemonsProps {
   name: string;
 }
 
 const Pokemons: React.FC<PokemonsProps> = ({ name }) => {
-  const { pokemonInfo, pokemonSpeciesInfo } = usePokemonData(name);
+  const { data: pokemonInfo } = useQuery({
+    queryKey: [`${name}`, name],
+    queryFn: () => getPokemonWithId(name),
+    enabled: !!name,
+    staleTime: 1000 * 60 * 60,
+  });
+
+  const { data: pokemonSpeciesInfo } = useQuery({
+    queryKey: [`${name}Spec`, name],
+    queryFn: () => getPokemonWithSpec(name),
+    enabled: !!name,
+    staleTime: 1000 * 60 * 60,
+  });
+  // console.log(pokemonInfo?.types);
 
   return (
     <>
@@ -19,6 +31,11 @@ const Pokemons: React.FC<PokemonsProps> = ({ name }) => {
       >
         <img className='h-20 w-20' src={pokemonInfo?.sprites?.front_default} />
         <div>{pokemonSpeciesInfo?.names[2].name}</div>
+        <div>
+          {pokemonInfo?.types.map((type) => (
+            <div key={type.slot}>{type.type.name}</div>
+          ))}
+        </div>
       </Link>
     </>
   );
