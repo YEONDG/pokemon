@@ -7,8 +7,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ErrorPage from './error-page';
-import PokemonDetail from './pages/pokemon/[name]';
+import PokemonDetail from './pages/pokemon/Detail';
 import Root from './routes/Root';
+import PokemonTypePage from './pages/pokemon/type/Type';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/pokemon/:name',
         element: <PokemonDetail />,
+      },
+      {
+        path: '/pokemon/type/:type',
+        element: <PokemonTypePage />,
       },
     ],
   },

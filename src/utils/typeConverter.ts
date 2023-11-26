@@ -1,4 +1,29 @@
-export const typeConverter = {
+interface LabelConvertedType {
+  [key: string]: string;
+}
+
+export const typeList: string[] = [
+  'normal',
+  'fighting',
+  'flying',
+  'poison',
+  'ground',
+  'rock',
+  'bug',
+  'ghost',
+  'steel',
+  'fire',
+  'water',
+  'grass',
+  'electric',
+  'psychic',
+  'ice',
+  'dragon',
+  'dark',
+  'fairy',
+];
+
+export const typeConverter: LabelConvertedType = {
   normal: '노말',
   fighting: '격투',
   flying: '비행',

@@ -19,7 +19,7 @@ const Box = () => {
   return (
     <div className='animate-pulse flex w-64 border-2 h-64 justify-center items-center'>
       <div className='flex flex-col space-y-4'>
-        <div className=' rounded-full h-20 w-20 bg-slate-300' />
+        <div className=' rounded-full h-20 w-20 bg-slate-200' />
         <div className='h-3 bg-slate-300 rounded col-span-2'></div>
         <div className='h-3 bg-slate-300 rounded col-span-1'></div>
       </div>
