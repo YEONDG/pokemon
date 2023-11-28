@@ -4,6 +4,7 @@ import { getPokemonWithId, getPokemonWithSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
 import { PokemonType } from '../types';
 import PokemonTypeLabel from './pokemonTypeLabel';
+import Img from './ui/Img';
 
 interface PokemonsProps {
   name: string;
@@ -11,13 +12,13 @@ interface PokemonsProps {
 
 const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
   const { data: pokemonInfo } = useQuery({
-    queryKey: [`${name}`, name],
+    queryKey: ['pokemonInfo', `${name}`],
     queryFn: () => getPokemonWithId(name),
     staleTime: Infinity,
   });
 
   const { data: pokemonSpeciesInfo } = useQuery({
-    queryKey: [`${name}Spec`, name],
+    queryKey: ['pokemonSpec', `${name}`],
     queryFn: () => getPokemonWithSpec(name),
     staleTime: Infinity,
   });
@@ -26,12 +27,17 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     <>
       <Link
         to={`/pokemon/${name}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden'
       >
         <div className='flex'>
           #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
         </div>
-        <img className='h-32 w-32' src={pokemonInfo?.sprites?.front_default} />
+        <Img
+          className={'h-32 w-32'}
+          alt='pokemon Img'
+          lazy={true}
+          src={pokemonInfo?.sprites?.front_default}
+        />
         <div className='text-3xl font-semibold'>
           {pokemonSpeciesInfo?.names[2].name}
         </div>

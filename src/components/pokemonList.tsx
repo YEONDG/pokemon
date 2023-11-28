@@ -4,10 +4,12 @@ import React from 'react';
 import { useIntersect } from '../hooks/useIntersect';
 import { PokemonAll } from '../types';
 import PokemonCard from './pokemonCard';
+import { Suspense } from 'react';
 
 const PokemonList = () => {
   const {
     data,
+    isError,
     error,
     fetchNextPage,
     hasNextPage,
@@ -32,10 +34,9 @@ const PokemonList = () => {
     }
   });
 
-  if (error) {
-    return <p>에러가 발생했습니다.</p>;
+  if (isError) {
+    return <div>에러발생했습니다.{error.message}</div>;
   }
-
   return (
     <>
       <section className='w-full'>
