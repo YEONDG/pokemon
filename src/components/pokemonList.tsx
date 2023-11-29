@@ -44,7 +44,11 @@ const PokemonList = () => {
           {data?.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group?.results?.map((project) => (
-                <PokemonCard key={project.name} name={project.name} />
+                <PokemonCard
+                  key={project.name}
+                  name={project.name}
+                  url={project.url}
+                />
               ))}
             </React.Fragment>
           ))}

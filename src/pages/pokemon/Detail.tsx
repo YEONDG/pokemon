@@ -1,22 +1,21 @@
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
-  getPokemonWithId,
+  getPokemonInfoWithId,
   getPokemonWithSpec,
 } from '../../apis/pokemon/pokemon';
 
 const PokemonDetail = () => {
-  const { pathname } = useLocation();
-  const name = pathname.split('/')[2];
+  const { name } = useParams();
 
   const { data: pokemonInfo } = useQuery({
-    queryKey: [`${name}`, name],
-    queryFn: () => getPokemonWithId(name),
+    queryKey: ['pokemonInfo', `${name}`],
+    queryFn: () => getPokemonInfoWithId(name),
     staleTime: 1000 * 60 * 60,
   });
 
   const { data: pokemonSpeciesInfo } = useQuery({
-    queryKey: [`${name}Spec`, name],
+    queryKey: ['pokemonSpec', `${name}`],
     queryFn: () => getPokemonWithSpec(name),
     staleTime: 1000 * 60 * 60,
   });

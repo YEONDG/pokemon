@@ -14,11 +14,14 @@ export const Img: React.FC<ImgProps> = ({
   className,
   lazy = true,
 }) => {
-  const { elementRef, isLoaded } = useIsImgLoaded(lazy);
+  const { elementRef, isLoaded, isVisible } = useIsImgLoaded(lazy);
+  const imgClasses = `${className} ${!isLoaded && 'hidden'}`;
 
-  const isHidden = isLoaded ? '' : 'hidden';
-  const css = className + isHidden;
-  return <img src={src} alt={alt} className={css} ref={elementRef} />;
+  return (
+    <div ref={elementRef}>
+      <img src={src} alt={alt} className={imgClasses} />
+    </div>
+  );
 };
 
 export default Img;

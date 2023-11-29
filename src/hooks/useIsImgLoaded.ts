@@ -3,7 +3,8 @@ import { useIsElementInViewport } from './useIsElementInViewport';
 
 export const useIsImgLoaded = (lazy: boolean) => {
   const { elementRef, isVisible } = useIsElementInViewport({
-    rootMargin: '0px 0px 500px 0px',
+    rootMargin: '0px 0px 0px 0px',
+    threshold: 0.5,
   });
   const [isLoaded, setIsLoaded] = useState(!lazy);
 
@@ -16,5 +17,5 @@ export const useIsImgLoaded = (lazy: boolean) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
-  return { elementRef, isLoaded };
+  return { elementRef, isLoaded, isVisible };
 };

@@ -1,7 +1,12 @@
 import instanse from '../../utils/axios';
 
-export const getPokemonWithId = async (name: string) => {
-  const { data } = await instanse.get(`pokemon/${name}`);
+export const getPokemonInfoUrl = async (url: string) => {
+  const { data } = await instanse.get(url);
+  return data;
+};
+
+export const getPokemonInfoWithId = async (Id: string | undefined) => {
+  const { data } = await instanse.get(`pokemon/${Id}`);
   return data;
 };
 
@@ -13,8 +18,8 @@ export const getPoketmonListAll = async ({ pageParam }) => {
   return data;
 };
 
-export const getPokemonWithSpec = async (name: string) => {
-  const { data } = await instanse.get(`pokemon-species/${name}`);
+export const getPokemonWithSpec = async (Id: string | undefined) => {
+  const { data } = await instanse.get(`pokemon-species/${Id}`);
   return data;
 };
 
@@ -23,7 +28,7 @@ export const getPokemonType = async () => {
   return data;
 };
 
-export const getPokemonTypeWithName = async (id: string) => {
+export const getPokemonTypeWithName = async (id: string | undefined) => {
   const { data } = await instanse.get(`type/${id}`);
   return data;
 };
