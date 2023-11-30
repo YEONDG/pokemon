@@ -14,11 +14,11 @@ export const Img: React.FC<ImgProps> = ({
   className,
   lazy = true,
 }) => {
-  const { elementRef, isLoaded, isVisible } = useIsImgLoaded(lazy);
-  const imgClasses = `${className} ${!isLoaded && 'hidden'}`;
+  const { elementRef, isVisible } = useIsImgLoaded(lazy);
+  const imgClasses = `${className} ${isVisible ? '' : 'hidden'}`;
 
   return (
-    <div ref={elementRef}>
+    <div ref={elementRef} className='w-32 h-32'>
       <img src={src} alt={alt} className={imgClasses} />
     </div>
   );

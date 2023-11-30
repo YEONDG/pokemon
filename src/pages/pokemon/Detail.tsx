@@ -4,28 +4,33 @@ import {
   getPokemonInfoWithId,
   getPokemonWithSpec,
 } from '../../apis/pokemon/pokemon';
+import { pokemonImgSrc } from '../../utils/path';
+import { PokemonDetailType, PokemonSpecies } from '../../types';
+import Img from '../../components/ui/Img';
 
-const PokemonDetail = () => {
+const PokemonDetailPage = () => {
   const { name } = useParams();
 
-  const { data: pokemonInfo } = useQuery({
+  const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
     queryKey: ['pokemonInfo', `${name}`],
     queryFn: () => getPokemonInfoWithId(name),
-    staleTime: 1000 * 60 * 60,
+    staleTime: Infinity,
   });
 
-  const { data: pokemonSpeciesInfo } = useQuery({
+  const { data: pokemonSpeciesInfo } = useQuery<PokemonSpecies, Error>({
     queryKey: ['pokemonSpec', `${name}`],
     queryFn: () => getPokemonWithSpec(name),
-    staleTime: 1000 * 60 * 60,
+    staleTime: Infinity,
   });
+
+  const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
 
   return (
     <div className='flex flex-col justify-center items-center'>
-      <img className='h-40 w-40' src={pokemonInfo?.sprites?.front_default} />
+      <Img className={'h-32 w-32'} alt='pokemon Img' lazy={true} src={imgSrc} />
       <div>{pokemonSpeciesInfo?.names[2].name}</div>
     </div>
   );
 };
 
-export default PokemonDetail;
+export default PokemonDetailPage;

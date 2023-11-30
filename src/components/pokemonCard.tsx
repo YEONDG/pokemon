@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { PokemonType } from '../types';
 import PokemonTypeLabel from './pokemonTypeLabel';
 import Img from './ui/Img';
+import { pokemonImgSrc } from '../utils/path';
 
 interface PokemonsProps {
   name: string;
@@ -12,17 +13,21 @@ interface PokemonsProps {
 }
 
 const PokemonCard: React.FC<PokemonsProps> = ({ name, url }) => {
+  const id = url.split('/')[6];
+  console.log(id);
   const { data: pokemonInfo } = useQuery({
-    queryKey: ['pokemonInfo', `${name}`],
+    queryKey: ['pokemonInfo', id],
     queryFn: () => getPokemonInfoUrl(url),
     staleTime: Infinity,
   });
 
   const { data: pokemonSpeciesInfo } = useQuery({
-    queryKey: ['pokemonSpec', `${pokemonInfo?.species?.name}`],
-    queryFn: () => getPokemonWithSpec(pokemonInfo?.species?.name),
+    queryKey: ['pokemonSpec', id],
+    queryFn: () => getPokemonWithSpec(id),
     staleTime: Infinity,
   });
+
+  const imgSrc = pokemonImgSrc(pokemonInfo);
 
   return (
     <>
@@ -37,12 +42,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name, url }) => {
           className={'h-32 w-32'}
           alt='pokemon Img'
           lazy={true}
-          src={
-            pokemonInfo?.sprites?.versions?.['generation-v']?.['black-white']
-              ?.animated?.front_default ??
-            pokemonInfo?.sprites?.front_default ??
-            pokemonInfo?.sprites?.other?.['official-artwork'].front_default
-          }
+          src={imgSrc}
         />
         <div className='text-3xl font-semibold'>
           {pokemonSpeciesInfo?.names[2].name}

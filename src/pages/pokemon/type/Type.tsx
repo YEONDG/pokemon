@@ -5,17 +5,16 @@ import { getPokemonTypeWithName } from '../../../apis/pokemon/pokemon';
 import PokemonCard from '../../../components/pokemonCard';
 import { typeConverter } from '../../../utils/typeConverter';
 import { typeBgColor } from '../../../utils/typeColor';
-
 const PokemonTypePage = () => {
   const { type } = useParams();
 
-  const { data: pokemonType } = useQuery({
+  const { data: pokemonTypeList } = useQuery({
     queryKey: ['type', `${type}`],
     queryFn: () => getPokemonTypeWithName(type),
     staleTime: Infinity,
   });
 
-  const pokemonCount = pokemonType?.pokemon?.length;
+  const pokemonCount = pokemonTypeList?.pokemon?.length;
 
   return (
     <div>
@@ -29,7 +28,7 @@ const PokemonTypePage = () => {
           </div>
         </header>
         <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 w-full p-10 gap-4'>
-          {pokemonType?.pokemon?.map((item) => (
+          {pokemonTypeList?.pokemon?.map((item) => (
             <PokemonCard
               key={item?.pokemon?.name}
               name={item?.pokemon?.name}

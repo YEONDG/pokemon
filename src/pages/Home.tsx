@@ -1,7 +1,8 @@
+import { Suspense } from 'react';
 import PokemonList from '../components/pokemonList';
 import MainTypesLabel from '../components/mainTypesLabel';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
       {/* 타이틀 */}
@@ -13,9 +14,11 @@ const Home = () => {
       {/* 타입리스트 */}
       <MainTypesLabel />
       {/* 리스트 */}
-      <PokemonList />
+      <Suspense>
+        <PokemonList />
+      </Suspense>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,10 +1,9 @@
+import React from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
-import React from 'react';
 import { useIntersect } from '../hooks/useIntersect';
 import { PokemonAll } from '../types';
 import PokemonCard from './pokemonCard';
-import { Suspense } from 'react';
 
 const PokemonList = () => {
   const {
