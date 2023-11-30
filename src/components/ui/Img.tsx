@@ -14,8 +14,8 @@ export const Img: React.FC<ImgProps> = ({
   className,
   lazy = true,
 }) => {
-  const { elementRef, isVisible } = useIsImgLoaded(lazy);
-  const imgClasses = `${className} ${isVisible ? '' : 'hidden'}`;
+  const { elementRef, isLoaded } = useIsImgLoaded(lazy);
+  const imgClasses = `${className} ${isLoaded ? '' : 'hidden'}`;
 
   return (
     <div ref={elementRef} className='w-32 h-32'>

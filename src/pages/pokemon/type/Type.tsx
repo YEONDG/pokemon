@@ -11,6 +11,7 @@ const PokemonTypePage = () => {
   const { data: pokemonTypeList } = useQuery({
     queryKey: ['type', `${type}`],
     queryFn: () => getPokemonTypeWithName(type),
+    enabled: !!type,
     staleTime: Infinity,
   });
 

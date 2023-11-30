@@ -1,57 +1,83 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getPokemonInfoUrl, getPokemonWithSpec } from '../apis/pokemon/pokemon';
+import {
+  getPokemonInfoUrl,
+  getPokemonInfoWithId,
+  getPokemonSpec,
+} from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
 import { PokemonType } from '../types';
 import PokemonTypeLabel from './pokemonTypeLabel';
-import Img from './ui/Img';
 import { pokemonImgSrc } from '../utils/path';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useIsImgLoaded } from '../hooks/useIsImgLoaded';
 
 interface PokemonsProps {
   name: string;
   url: string;
 }
 
-const PokemonCard: React.FC<PokemonsProps> = ({ name, url }) => {
-  const id = url.split('/')[6];
-  console.log(id);
+const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
   const { data: pokemonInfo } = useQuery({
-    queryKey: ['pokemonInfo', id],
-    queryFn: () => getPokemonInfoUrl(url),
+    queryKey: ['pokemonInfo', name],
+    queryFn: () => getPokemonInfoWithId(name),
+    enabled: !!name,
     staleTime: Infinity,
   });
 
   const { data: pokemonSpeciesInfo } = useQuery({
-    queryKey: ['pokemonSpec', id],
-    queryFn: () => getPokemonWithSpec(id),
+    queryKey: ['pokemonSpec', pokemonInfo?.species?.name],
+    queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
+    enabled: !!pokemonInfo?.species?.name,
     staleTime: Infinity,
   });
 
-  const imgSrc = pokemonImgSrc(pokemonInfo);
-
+  // const imgSrc = pokemonImgSrc(pokemonInfo);
+  const { elementRef, isLoaded } = useIsImgLoaded(true);
   return (
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-full'
+        ref={elementRef}
       >
-        <div className='flex'>
-          #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
-        </div>
-        <Img
-          className={'h-32 w-32'}
-          alt='pokemon Img'
-          lazy={true}
-          src={imgSrc}
-        />
-        <div className='text-3xl font-semibold'>
-          {pokemonSpeciesInfo?.names[2].name}
-        </div>
-        <div className='flex w-full p-2 gap-2'>
-          {pokemonInfo?.types?.map((type: PokemonType) => (
-            <PokemonTypeLabel key={type.slot} types={type} />
-          ))}
-        </div>
+        {isLoaded ? (
+          <>
+            <div className='flex'>
+              #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
+            </div>
+            <LazyLoadImage
+              className={''}
+              alt='pokemon Img'
+              src={
+                pokemonInfo?.sprites?.versions?.['generation-v']?.[
+                  'black-white'
+                ]?.animated?.front_default ??
+                pokemonInfo?.sprites?.front_default ??
+                pokemonInfo?.sprites?.other?.['official-artwork'].front_default
+              }
+              width={
+                pokemonInfo?.sprites?.versions?.['generation-v']?.[
+                  'black-white'
+                ]?.animated?.front_default
+                  ? 80
+                  : 120
+              }
+              height={120}
+            />
+            <div className='text-3xl font-semibold'>
+              {pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}
+            </div>
+            <div className='flex w-full p-2 gap-2'>
+              {pokemonInfo?.types?.map((type: PokemonType) => (
+                <PokemonTypeLabel key={type.slot} types={type} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className='h-48'>로딩중</div>
+        )}
       </Link>
     </>
   );

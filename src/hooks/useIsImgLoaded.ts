@@ -17,5 +17,5 @@ export const useIsImgLoaded = (lazy: boolean) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
-  return { elementRef, isLoaded, isVisible };
+  return { elementRef, isLoaded };
 };

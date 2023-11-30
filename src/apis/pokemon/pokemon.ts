@@ -18,8 +18,13 @@ export const getPoketmonListAll = async ({ pageParam }) => {
   return data;
 };
 
-export const getPokemonWithSpec = async (Id: string | undefined) => {
+export const getPokemonSpec = async (Id: string | undefined) => {
   const { data } = await instanse.get(`pokemon-species/${Id}`);
+  return data;
+};
+
+export const getPokemonSpecWithUrl = async (url: string) => {
+  const { data } = await instanse.get(url);
   return data;
 };
 
