@@ -1,15 +1,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import {
-  getPokemonInfoUrl,
-  getPokemonInfoWithId,
-  getPokemonSpec,
-} from '../apis/pokemon/pokemon';
+import { getPokemonInfoWithId, getPokemonSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
 import { PokemonType } from '../types';
 import PokemonTypeLabel from './pokemonTypeLabel';
-import { pokemonImgSrc } from '../utils/path';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useIsImgLoaded } from '../hooks/useIsImgLoaded';
 
@@ -39,17 +33,17 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-full'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-56'
         ref={elementRef}
       >
         {isLoaded ? (
-          <>
-            <div className='flex'>
+          <div className='flex h-full flex-col w-full justify-center items-center'>
+            <div className='flex h-full'>
               #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
             </div>
             <LazyLoadImage
               className={''}
-              alt='pokemon Img'
+              alt=''
               src={
                 pokemonInfo?.sprites?.versions?.['generation-v']?.[
                   'black-white'
@@ -74,7 +68,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
                 <PokemonTypeLabel key={type.slot} types={type} />
               ))}
             </div>
-          </>
+          </div>
         ) : (
           <div className='h-48'>로딩중</div>
         )}
