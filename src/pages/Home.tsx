@@ -1,5 +1,6 @@
 import PokemonList from '../components/pokemonList';
 import MainTypesLabel from '../components/mainTypesLabel';
+import { Suspense } from 'react';
 
 const HomePage = () => {
   return (
@@ -13,7 +14,9 @@ const HomePage = () => {
       {/* 타입리스트 */}
       <MainTypesLabel />
       {/* 리스트 */}
-      <PokemonList />
+      <Suspense>
+        <PokemonList />
+      </Suspense>
     </div>
   );
 };

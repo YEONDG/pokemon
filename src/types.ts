@@ -17,6 +17,11 @@ export interface PokemonType {
   results: PokemonBasic[];
 }
 
+export interface PokemonTypes {
+  slot: number;
+  type: PokemonBasic;
+}
+
 export interface PokemonAblities {
   ability: PokemonBasic;
   is_hidden: false;
@@ -138,8 +143,8 @@ export interface PokemonDetailType {
     base_stat: number;
     effort: number;
     stat: PokemonBasic;
-  };
-  types: PokemonType[];
+  }[];
+  types: PokemonTypes[];
   weight: number;
 }
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import { PokemonType } from '../types';
+import { PokemonBasic } from '../types';
 import { typeConverter } from '../utils/typeConverter';
 import { typeBgColor } from '../utils/typeColor';
 
 interface typeLabelProps {
-  types: PokemonType;
+  types: PokemonBasic;
 }
 
 const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
-  const typeName = types.type ? types.type.name : 'normal';
+  const typeName = types ? types.name : 'normal';
   const translatedTypeName = typeConverter[typeName];
 
   return (

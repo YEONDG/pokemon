@@ -16,14 +16,15 @@ const PokemonTypePage = () => {
   });
 
   const pokemonCount = pokemonTypeList?.pokemon?.length;
+  const pokemonType = type ? type : 'normal';
 
   return (
-    <div>
+    <>
       <section className='w-full'>
         <header
-          className={`flex relative justify-center items-center border-2 rounded-xl mx-10 mt-5 p-5 text-5xl ${typeBgColor[type]} text-white`}
+          className={`flex relative justify-center items-center border-2 rounded-xl mx-10 mt-5 p-5 text-5xl ${typeBgColor[pokemonType]} text-white`}
         >
-          <h2>{typeConverter[type]}</h2>
+          <h2>{typeConverter[pokemonType]}</h2>
           <div className='absolute bottom-0 right-10 text-xl'>
             {pokemonCount} 마리
           </div>
@@ -38,7 +39,7 @@ const PokemonTypePage = () => {
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
