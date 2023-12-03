@@ -5,10 +5,11 @@ import { getPokemonTypeWithName } from '../../../apis/pokemon/pokemon';
 import PokemonCard from '../../../components/pokemonCard';
 import { typeConverter } from '../../../utils/typeConverter';
 import { typeBgColor } from '../../../utils/typeColor';
+import { PokemonTypeList } from '../../../types';
 const PokemonTypePage = () => {
   const { type } = useParams();
 
-  const { data: pokemonTypeList } = useQuery({
+  const { data: pokemonTypeList } = useQuery<PokemonTypeList, Error>({
     queryKey: ['type', `${type}`],
     queryFn: () => getPokemonTypeWithName(type),
     enabled: !!type,

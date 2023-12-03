@@ -16,7 +16,7 @@ const PokemonList = () => {
     isFetchingNextPage,
   } = useInfiniteQuery<PokemonAll, Error>({
     queryKey: ['pokemons'],
-    queryFn: getPoketmonListAll,
+    queryFn: () => getPoketmonListAll({}),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const { next } = lastPage;

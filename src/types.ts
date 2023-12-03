@@ -42,6 +42,11 @@ export interface PokemonVersion {
   version: PokemonBasic;
 }
 
+export interface PokemonTypeBasic {
+  pokemon: PokemonBasic;
+  slot: number;
+}
+
 export interface PokemonTypeList {
   damage_relations: number;
   game_indices: [];
@@ -51,6 +56,8 @@ export interface PokemonTypeList {
   move: [];
   name: string;
   names: PokemonName[];
+  past_damage_relations: [];
+  pokemon: PokemonTypeBasic[];
 }
 
 export interface PokemonName {
