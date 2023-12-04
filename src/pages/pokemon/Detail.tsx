@@ -7,9 +7,12 @@ import {
 import { PokemonDetailType, PokemonSpecies } from '../../types';
 import PokemonTypeLabel from '../../components/pokemonTypeLabel';
 import { typeBgColor } from '../../utils/typeColor';
-import PokemonImgScroll from '../../components/pokemonImgScroll';
+
 import Img from '../../components/ui/Img';
 import { pokemonImgSrc } from '../../utils/path';
+import ImageContainer from '../../components/ImageContainer';
+import React from 'react';
+import ImageVersionsContainer from '../../components/ImageVersionsContainer';
 
 const PokemonDetailPage = () => {
   const { name: Id } = useParams();
@@ -32,8 +35,8 @@ const PokemonDetailPage = () => {
 
   const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
 
-  // console.log('pokemonInfo', pokemonInfo);
-  // console.log('pokemonSpeciesInfo', pokemonSpeciesInfo);
+  console.log('pokemonInfo', pokemonInfo);
+  console.log('pokemonSpeciesInfo', pokemonSpeciesInfo);
 
   const type = pokemonInfo ? pokemonInfo?.types[0]?.type.name : 'normal';
 
@@ -45,30 +48,42 @@ const PokemonDetailPage = () => {
         <h2>{pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}</h2>
       </header>
 
-      <div className='flex flex-col justify-center items-center'>
-        <div className='flex flex-col justify-center items-center m-10'>
+      <main className='flex flex-col justify-center items-center'>
+        <section className='flex flex-col justify-center items-center m-10'>
           <Img
             className={'h-32 w-32'}
             alt='pokemon Img'
             lazy={true}
             src={imgSrc}
           />
-          <PokemonImgScroll sprites={pokemonInfo?.sprites} />
-        </div>
-        <div className='flex w-64'>
+        </section>
+        <section className='flex w-64'>
           {pokemonInfo?.types?.map((type) => (
             <PokemonTypeLabel key={type.slot} types={type.type} />
           ))}
-        </div>
-        <div>무게: {pokemonInfo?.weight}</div>
-        <div>
-          {pokemonInfo?.stats?.map((v, i) => (
-            <div key={i}>
-              {v.stat.name} {v.base_stat}
-            </div>
-          ))}
-        </div>
-      </div>
+        </section>
+        <section>
+          <div>
+            키{' '}
+            <span>
+              {pokemonInfo?.height ? pokemonInfo.height / 10 + 'm' : ' ??? '}
+            </span>
+          </div>
+          <div>
+            무게{' '}
+            <span>
+              {pokemonInfo?.weight ? pokemonInfo.weight / 10 + 'kg' : ' ??? '}
+            </span>
+          </div>
+          <div>HP {pokemonInfo?.stats[0]?.base_stat}</div>
+          <div>공격력 {pokemonInfo?.stats[1]?.base_stat}</div>
+          <div>방어력 {pokemonInfo?.stats[2]?.base_stat}</div>
+        </section>
+        <section>
+          <ImageContainer sprites={pokemonInfo?.sprites} />
+          <ImageVersionsContainer versions={pokemonInfo?.sprites?.versions} />
+        </section>
+      </main>
     </div>
   );
 };

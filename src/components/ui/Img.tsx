@@ -16,12 +16,15 @@ export const Img: React.FC<ImgProps> = ({
 }) => {
   const { elementRef, isLoaded } = useIsImgLoaded(lazy);
   const imgClasses = `${className} ${isLoaded ? '' : 'hidden'}`;
-  if (src === null) {
+  if (src === null || src === undefined) {
     return;
   }
 
   return (
-    <div ref={elementRef} className='w-32 h-32'>
+    <div
+      ref={elementRef}
+      className='flex items-center justify-center mx-5 w-24'
+    >
       <img src={src} alt={alt} className={imgClasses} />
     </div>
   );
