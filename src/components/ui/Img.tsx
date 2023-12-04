@@ -2,9 +2,9 @@ import React from 'react';
 import { useIsImgLoaded } from '../../hooks/useIsImgLoaded';
 
 interface ImgProps {
-  src: string;
+  src: string | null;
   alt: string;
-  className: string;
+  className?: string;
   lazy?: boolean;
 }
 
@@ -16,6 +16,9 @@ export const Img: React.FC<ImgProps> = ({
 }) => {
   const { elementRef, isLoaded } = useIsImgLoaded(lazy);
   const imgClasses = `${className} ${isLoaded ? '' : 'hidden'}`;
+  if (src === null) {
+    return;
+  }
 
   return (
     <div ref={elementRef} className='w-32 h-32'>

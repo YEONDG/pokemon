@@ -4,11 +4,12 @@ import {
   getPokemonInfoWithId,
   getPokemonSpec,
 } from '../../apis/pokemon/pokemon';
-import { pokemonImgSrc } from '../../utils/path';
 import { PokemonDetailType, PokemonSpecies } from '../../types';
-import Img from '../../components/ui/Img';
 import PokemonTypeLabel from '../../components/pokemonTypeLabel';
 import { typeBgColor } from '../../utils/typeColor';
+import PokemonImgScroll from '../../components/pokemonImgScroll';
+import Img from '../../components/ui/Img';
+import { pokemonImgSrc } from '../../utils/path';
 
 const PokemonDetailPage = () => {
   const { name: Id } = useParams();
@@ -31,8 +32,8 @@ const PokemonDetailPage = () => {
 
   const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
 
-  console.log('pokemonInfo', pokemonInfo);
-  console.log('pokemonSpeciesInfo', pokemonSpeciesInfo);
+  // console.log('pokemonInfo', pokemonInfo);
+  // console.log('pokemonSpeciesInfo', pokemonSpeciesInfo);
 
   const type = pokemonInfo ? pokemonInfo?.types[0]?.type.name : 'normal';
 
@@ -45,13 +46,14 @@ const PokemonDetailPage = () => {
       </header>
 
       <div className='flex flex-col justify-center items-center'>
-        <div className='m-10'>
+        <div className='flex flex-col justify-center items-center m-10'>
           <Img
             className={'h-32 w-32'}
             alt='pokemon Img'
             lazy={true}
             src={imgSrc}
           />
+          <PokemonImgScroll sprites={pokemonInfo?.sprites} />
         </div>
         <div className='flex w-64'>
           {pokemonInfo?.types?.map((type) => (
