@@ -70,7 +70,7 @@ export interface PokemonGenera {
   language: PokemonBasic;
 }
 
-export interface PokemonImgType {
+export interface PokemonImgBasicType {
   back_default: string | null;
   back_female: string | null;
   back_shiny: string | null;
@@ -79,6 +79,16 @@ export interface PokemonImgType {
   front_female: string | null;
   front_shiny: string | null;
   front_shiny_female: string | null;
+}
+
+export interface PokemonImgBasicFrontType {
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+}
+
+export interface PokemonImgType extends PokemonImgBasicType {
   other: PokemonOther;
   versions: PokemonVersionsGeneration;
 }
@@ -90,6 +100,11 @@ export interface PokemonVersionsImgType {
   front_default: string | null;
   front_gray: string | null;
   front_transparent: string | null;
+}
+
+export interface PokemonVersionsImgWithAnimatedType
+  extends PokemonVersionsImgType {
+  animated: PokemonImgBasicType;
 }
 
 export interface PokemonVersionsGeneration {
@@ -113,13 +128,13 @@ export interface PokemonVersionsGeneration {
     platinum: PokemonVersionsImgType;
   };
   'generation-v': {
-    'black-white': { animated: PokemonVersionsImgType; front_default: string };
+    'black-white': PokemonVersionsImgWithAnimatedType;
   };
   'generation-vi': {
-    'omegaruby-alphasapphire': PokemonVersionsImgType;
-    'x-y': PokemonVersionsImgType;
+    'omegaruby-alphasapphire': PokemonImgBasicFrontType;
+    'x-y': PokemonImgBasicFrontType;
   };
-  'generation-vii': { 'ultra-sun-ultra-moon': PokemonVersionsImgType };
+  'generation-vii': { 'ultra-sun-ultra-moon': PokemonImgBasicFrontType };
 }
 
 export interface PokemonOther {

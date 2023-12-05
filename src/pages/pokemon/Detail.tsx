@@ -1,18 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+
 import {
   getPokemonInfoWithId,
   getPokemonSpec,
 } from '../../apis/pokemon/pokemon';
-import { PokemonDetailType, PokemonSpecies } from '../../types';
 import PokemonTypeLabel from '../../components/pokemonTypeLabel';
-import { typeBgColor } from '../../utils/typeColor';
+import ImageDefaultContainer from '../../components/detail/ImageDefaultContainer';
+import ImageVersionsContainer from '../../components/detail/ImageVersionsContainer';
+import DefalutInfo from '../../components/detail/DefalutInfo';
 
 import Img from '../../components/ui/Img';
+import { typeBgColor } from '../../utils/typeColor';
 import { pokemonImgSrc } from '../../utils/path';
-import ImageContainer from '../../components/ImageContainer';
-import React from 'react';
-import ImageVersionsContainer from '../../components/ImageVersionsContainer';
+
+import { PokemonDetailType, PokemonSpecies } from '../../types';
 
 const PokemonDetailPage = () => {
   const { name: Id } = useParams();
@@ -43,44 +45,32 @@ const PokemonDetailPage = () => {
   return (
     <div className='flex flex-col justify-center items-center w-full'>
       <header
-        className={`flex relative justify-center items-center border-2 rounded-xl mx-10 mt-5 p-5 text-5xl ${typeBgColor[type]} text-white w-full`}
+        className={`flex relative justify-center items-center rounded-xl mx-10 mt-5 p-5 text-5xl ${typeBgColor[type]} text-white w-full`}
       >
-        <h2>{pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}</h2>
+        <h2 className='h-11'>
+          {pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}
+        </h2>
       </header>
 
-      <main className='flex flex-col justify-center items-center'>
-        <section className='flex flex-col justify-center items-center m-10'>
+      <main className='flex flex-col justify-center items-center max-w-3xl gap-10 mt-20'>
+        <section className='flex flex-col justify-center items-center w-72 h-64'>
           <Img
-            className={'h-32 w-32'}
+            className={'h-32 w-36 m-10'}
             alt='pokemon Img'
             lazy={true}
             src={imgSrc}
           />
-        </section>
-        <section className='flex w-64'>
-          {pokemonInfo?.types?.map((type) => (
-            <PokemonTypeLabel key={type.slot} types={type.type} />
-          ))}
-        </section>
-        <section>
-          <div>
-            키{' '}
-            <span>
-              {pokemonInfo?.height ? pokemonInfo.height / 10 + 'm' : ' ??? '}
-            </span>
+          <div className='flex w-72'>
+            {pokemonInfo?.types?.map((type) => (
+              <PokemonTypeLabel key={type.slot} types={type.type} />
+            ))}
           </div>
-          <div>
-            무게{' '}
-            <span>
-              {pokemonInfo?.weight ? pokemonInfo.weight / 10 + 'kg' : ' ??? '}
-            </span>
-          </div>
-          <div>HP {pokemonInfo?.stats[0]?.base_stat}</div>
-          <div>공격력 {pokemonInfo?.stats[1]?.base_stat}</div>
-          <div>방어력 {pokemonInfo?.stats[2]?.base_stat}</div>
         </section>
-        <section>
-          <ImageContainer sprites={pokemonInfo?.sprites} />
+        <section className='w-full'>
+          <DefalutInfo pokemonInfo={pokemonInfo} />
+        </section>
+        <section className='w-full'>
+          <ImageDefaultContainer sprites={pokemonInfo?.sprites} />
           <ImageVersionsContainer versions={pokemonInfo?.sprites?.versions} />
         </section>
       </main>

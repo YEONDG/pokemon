@@ -21,7 +21,10 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     staleTime: Infinity,
   });
 
-  const { data: pokemonSpeciesInfo } = useQuery<PokemonSpecies, Error>({
+  const { data: pokemonSpeciesInfo, isSuccess } = useQuery<
+    PokemonSpecies,
+    Error
+  >({
     queryKey: ['pokemonSpec', pokemonInfo?.species?.name],
     queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
     enabled: !!pokemonInfo?.species?.name,
@@ -37,9 +40,9 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
         className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72'
         ref={elementRef}
       >
-        {isLoaded ? (
+        {isLoaded && isSuccess ? (
           <div className='flex h-full flex-col w-full justify-center items-center'>
-            <div className='flex h-full'>
+            <div className='flex h-full dark:text-slate-100'>
               #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
             </div>
             <LazyLoadImage
@@ -55,7 +58,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
               }
               height={120}
             />
-            <div className='text-3xl font-semibold'>
+            <div className='text-3xl font-semibold dark:text-slate-100'>
               {pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}
             </div>
             <div className='flex w-full p-2 gap-2'>
@@ -64,9 +67,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
               ))}
             </div>
           </div>
-        ) : (
-          <div className='h-48'>로딩중</div>
-        )}
+        ) : null}
       </Link>
     </>
   );

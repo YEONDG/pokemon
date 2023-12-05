@@ -1,20 +1,22 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { getPokemonTypeWithName } from '../../../apis/pokemon/pokemon';
 import PokemonCard from '../../../components/pokemonCard';
 import { typeConverter } from '../../../utils/typeConverter';
 import { typeBgColor } from '../../../utils/typeColor';
 import { PokemonTypeList } from '../../../types';
+import PokemonListUi from '@/components/pokemonListUi';
 const PokemonTypePage = () => {
   const { type } = useParams();
 
-  const { data: pokemonTypeList } = useQuery<PokemonTypeList, Error>({
-    queryKey: ['type', `${type}`],
-    queryFn: () => getPokemonTypeWithName(type),
-    enabled: !!type,
-    staleTime: Infinity,
-  });
+  const { data: pokemonTypeList, isLoading } = useQuery<PokemonTypeList, Error>(
+    {
+      queryKey: ['type', `${type}`],
+      queryFn: () => getPokemonTypeWithName(type),
+      staleTime: Infinity,
+    }
+  );
 
   const pokemonCount = pokemonTypeList?.pokemon?.length;
   const pokemonType = type ? type : 'normal';
@@ -30,15 +32,19 @@ const PokemonTypePage = () => {
             {pokemonCount} 마리
           </div>
         </header>
-        <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 w-full p-10 gap-4'>
-          {pokemonTypeList?.pokemon?.map((item) => (
-            <PokemonCard
-              key={item?.pokemon?.name}
-              name={item?.pokemon?.name}
-              url={item?.pokemon?.url}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <PokemonListUi />
+        ) : (
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 w-full p-10 gap-4'>
+            {pokemonTypeList?.pokemon?.map((item) => (
+              <PokemonCard
+                key={item?.pokemon?.name}
+                name={item?.pokemon?.name}
+                url={item?.pokemon?.url}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </>
   );

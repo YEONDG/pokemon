@@ -8,12 +8,13 @@ interface typeLabelProps {
 }
 
 const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
-  const typeName = types ? types.name : 'normal';
+  const typeName = types.name;
+  console.log(typeName);
   const translatedTypeName = typeConverter[typeName];
 
   return (
     <div
-      className={`flex w-full ${typeBgColor[typeName]} rounded-md justify-center items-center`}
+      className={`flex w-full rounded-md justify-center items-center ${typeBgColor[typeName]}`}
     >
       <div className='text-xl text-white font-bold '>{translatedTypeName}</div>
     </div>

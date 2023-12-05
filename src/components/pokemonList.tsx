@@ -1,5 +1,5 @@
 import React from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
 import { useIntersect } from '../hooks/useIntersect';
 import { PokemonAll } from '../types';
@@ -14,9 +14,9 @@ const PokemonList = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
-  } = useInfiniteQuery<PokemonAll, Error>({
+  } = useSuspenseInfiniteQuery<PokemonAll, Error>({
     queryKey: ['pokemons'],
-    queryFn: () => getPoketmonListAll({}),
+    queryFn: ({ pageParam }) => getPoketmonListAll({ pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const { next } = lastPage;
