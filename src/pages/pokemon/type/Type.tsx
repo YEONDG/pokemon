@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getPokemonTypeWithName } from '../../../apis/pokemon/pokemon';
 import PokemonCard from '../../../components/pokemonCard';

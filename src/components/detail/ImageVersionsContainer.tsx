@@ -12,7 +12,6 @@ const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
     return null;
   }
 
-  console.log(versions);
   return (
     <div className='flex flex-col justify-center items-center my-5'>
       <div className='text-3xl bg-slate-300 rounded-xl text-center px-3 py-1 my-5 w-full '>

@@ -37,9 +37,6 @@ const PokemonDetailPage = () => {
 
   const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
 
-  console.log('pokemonInfo', pokemonInfo);
-  console.log('pokemonSpeciesInfo', pokemonSpeciesInfo);
-
   const type = pokemonInfo ? pokemonInfo?.types[0]?.type.name : 'normal';
 
   return (

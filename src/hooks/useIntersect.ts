@@ -14,7 +14,6 @@ export const useIntersect = (
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) onIntersect(entry, observer);
-        console.log('??', entry.isIntersecting);
       });
     },
     [onIntersect]

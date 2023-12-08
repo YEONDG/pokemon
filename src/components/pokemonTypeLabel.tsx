@@ -9,7 +9,6 @@ interface typeLabelProps {
 
 const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
   const typeName = types.name;
-  console.log(typeName);
   const translatedTypeName = typeConverter[typeName];
 
   return (
