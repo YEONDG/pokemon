@@ -34,7 +34,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72 w-full m-5'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72 w-full'
       >
         <div className='flex h-full flex-col w-full justify-center items-center'>
           <div className='flex h-full dark:text-slate-100'>

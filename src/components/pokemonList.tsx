@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getPoketmonListAll } from '../apis/pokemon/pokemon';
-import { PokemonAll } from '../types';
 import PokemonCard from './pokemonCard';
 import { FixedSizeList } from 'react-window';
 import debounce from 'lodash/debounce';
@@ -17,65 +16,54 @@ const MemoizedPokemonCard = memo(PokemonCard);
 
 const PokemonList = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const listRef = useRef(null);
+  const listRef = useRef<FixedSizeList>(null);
 
-  console.log(scrollPosition);
-  const {
-    data,
-    isError,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-  } = useSuspenseInfiniteQuery<PokemonAll, Error>({
-    queryKey: ['pokemons'],
-    queryFn: ({ pageParam }) => getPoketmonListAll({ pageParam }),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      const { next } = lastPage;
-      if (!next) return undefined;
-      return Number(new URL(next).searchParams.get('offset'));
-    },
-    staleTime: Infinity,
-  });
+  const { data, isError, fetchNextPage, hasNextPage, isFetching } =
+    useSuspenseInfiniteQuery({
+      queryKey: ['pokemons'],
+      queryFn: getPoketmonListAll,
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) => {
+        const { next } = lastPage;
+        if (!next) return undefined;
+        return Number(new URL(next).searchParams.get('offset'));
+      },
+      staleTime: Infinity,
+    });
 
   const Row = useMemo(
     () =>
-      memo(({ index, style }) => {
-        const groupIndex = Math.floor(index / 4);
-        const itemIndex = index % 4;
-        const groupData = data?.pages[groupIndex];
+      memo(
+        ({ index, style }: { index: number; style: React.CSSProperties }) => {
+          const groupIndex = Math.floor(index / 4);
+          const itemIndex = index % 4;
+          const groupData = data?.pages[groupIndex];
 
-        return (
-          <div style={style} className='flex bg-red-50'>
-            <React.Fragment>
-              {[0, 1, 2, 3].map((subItemIndex) => {
-                const subPokemon =
-                  groupData?.results?.[itemIndex * 4 + subItemIndex];
+          return (
+            <div style={style} className='flex bg-red-50 sm:gap-4 pt-2'>
+              <React.Fragment>
+                {[0, 1, 2, 3].map((subItemIndex) => {
+                  const subPokemon =
+                    groupData?.results?.[itemIndex * 4 + subItemIndex];
 
-                return (
-                  <React.Fragment key={subPokemon.name}>
-                    <MemoizedPokemonCard
-                      name={subPokemon.name}
-                      url={subPokemon.url}
-                    />
-                  </React.Fragment>
-                );
-              })}
-            </React.Fragment>
-          </div>
-        );
-      }),
+                  return (
+                    <React.Fragment key={subPokemon.name}>
+                      <MemoizedPokemonCard
+                        name={subPokemon.name}
+                        url={subPokemon.url}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </React.Fragment>
+            </div>
+          );
+        }
+      ),
     [data]
   );
 
   const itemCount = (data?.pages.length || 0) * 4;
-  console.log(data?.pages.length);
-  // console.log(itemCount);
-  // console.log(fetchNextPage, 'fetchNextPage');
-  // console.log(hasNextPage, 'hasNextPage');
-  // console.log(isFetching, 'isFetching');
 
   const loadMoreItems = useCallback(() => {
     if (hasNextPage && !isFetching) {
@@ -104,14 +92,6 @@ const PokemonList = () => {
     }
   }, [data?.pages]);
 
-  // useEffect(() => {
-  //   // 첫 페이지에서만 scrollPosition 초기화
-  //   if (data?.pages.length === 1) {
-  //     setScrollPosition(0);
-  //     localStorage.setItem('scrollPosition', '0');
-  //   }
-  // }, [data?.pages]);
-
   useEffect(() => {
     // 마운트 후 스크롤 위치로 이동
     if (listRef.current && scrollPosition !== 0) {
@@ -120,7 +100,7 @@ const PokemonList = () => {
   }, [scrollPosition]);
 
   if (isError) {
-    return <div>에러발생했습니다.{error.message}</div>;
+    return <div>에러발생했습니다.</div>;
   }
 
   return (
