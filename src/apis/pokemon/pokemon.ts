@@ -10,7 +10,7 @@ export const getPokemonInfoWithId = async (Id: string | undefined) => {
   return data;
 };
 
-const OFFSET = 20;
+const OFFSET = 16;
 export const getPoketmonListAll = async ({ pageParam = 0 }) => {
   const { data } = await axiosInstanse.get('pokemon', {
     params: { limit: OFFSET, offset: pageParam },

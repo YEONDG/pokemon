@@ -32,42 +32,38 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
   });
 
   const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
-  const { elementRef, isLoaded } = useIsImgLoaded(true);
+  // const { elementRef, isLoaded } = useIsImgLoaded(true);
   return (
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72'
-        ref={elementRef}
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72 w-full m-5'
       >
-        {isLoaded && isSuccess ? (
-          <div className='flex h-full flex-col w-full justify-center items-center'>
-            <div className='flex h-full dark:text-slate-100'>
-              #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
-            </div>
-            <LazyLoadImage
-              className={''}
-              alt=''
-              src={imgSrc}
-              width={
-                pokemonInfo?.sprites?.versions?.['generation-v']?.[
-                  'black-white'
-                ]?.animated?.front_default
-                  ? 80
-                  : 120
-              }
-              height={120}
-            />
-            <div className='text-3xl font-semibold dark:text-slate-100'>
-              {pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : null}
-            </div>
-            <div className='flex w-full p-2 gap-2'>
-              {pokemonInfo?.types?.map((type) => (
-                <PokemonTypeLabel key={type.slot} types={type.type} />
-              ))}
-            </div>
+        <div className='flex h-full flex-col w-full justify-center items-center'>
+          <div className='flex h-full dark:text-slate-100'>
+            #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
           </div>
-        ) : null}
+          <LazyLoadImage
+            className={''}
+            alt=''
+            src={imgSrc}
+            width={
+              pokemonInfo?.sprites?.versions?.['generation-v']?.['black-white']
+                ?.animated?.front_default
+                ? 80
+                : 120
+            }
+            height={120}
+          />
+          <div className='text-3xl font-semibold dark:text-slate-100'>
+            {pokemonSpeciesInfo?.names[2].name}
+          </div>
+          <div className='flex w-full p-2 gap-2'>
+            {pokemonInfo?.types?.map((type) => (
+              <PokemonTypeLabel key={type.slot} types={type.type} />
+            ))}
+          </div>
+        </div>
       </Link>
     </>
   );
