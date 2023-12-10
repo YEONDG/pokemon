@@ -21,10 +21,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     staleTime: Infinity,
   });
 
-  const { data: pokemonSpeciesInfo, isSuccess } = useQuery<
-    PokemonSpecies,
-    Error
-  >({
+  const { data: pokemonSpeciesInfo } = useQuery<PokemonSpecies, Error>({
     queryKey: ['pokemonSpec', pokemonInfo?.species?.name],
     queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
     enabled: !!pokemonInfo?.species?.name,
@@ -32,7 +29,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
   });
 
   const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
-  // const { elementRef, isLoaded } = useIsImgLoaded(true);
+
   return (
     <>
       <Link
@@ -55,6 +52,7 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
             }
             height={120}
           />
+
           <div className='text-3xl font-semibold dark:text-slate-100'>
             {pokemonSpeciesInfo?.names[2].name}
           </div>
