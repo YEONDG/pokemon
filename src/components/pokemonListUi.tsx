@@ -1,5 +1,3 @@
-import React from 'react';
-
 const PokemonListUi = () => {
   const boxCount = 12;
   return (

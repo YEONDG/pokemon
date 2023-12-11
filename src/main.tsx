@@ -10,6 +10,7 @@ import ErrorPage from './error-page';
 import PokemonDetail from './pages/pokemon/Detail';
 import Root from './routes/Root';
 import PokemonTypePage from './pages/pokemon/type/Type';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -44,8 +45,10 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-    <ReactQueryDevtools />
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  </HelmetProvider>
 );

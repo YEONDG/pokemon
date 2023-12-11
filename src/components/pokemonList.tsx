@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
-
 import PokemonCard from './pokemonCard';
 import { FixedSizeList } from 'react-window';
 import debounce from 'lodash/debounce';
@@ -11,7 +10,7 @@ const PokemonList = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const listRef = useRef<FixedSizeList>(null);
 
-  const { data, isError, fetchNextPage, hasNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetching } =
     useSuspenseInfinitePoke();
 
   const Row = useCallback(
@@ -75,10 +74,6 @@ const PokemonList = () => {
       listRef.current.scrollTo(scrollPosition);
     }
   }, [scrollPosition]);
-
-  if (isError) {
-    return <div>에러발생했습니다.</div>;
-  }
 
   const itemCount = (data?.pages.length || 0) * 4;
 
