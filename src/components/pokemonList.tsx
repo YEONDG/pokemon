@@ -16,7 +16,6 @@ const PokemonList = () => {
 
   const Row = useCallback(
     memo(({ index, style }: { index: number; style: React.CSSProperties }) => {
-      console.log('메모되나요?');
       const groupIndex = Math.floor(index / 4);
       const itemIndex = index % 4;
       const groupData = data?.pages?.[groupIndex];

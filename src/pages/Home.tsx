@@ -1,8 +1,13 @@
 import PokemonList from '../components/pokemonList';
 import MainTypesLabel from '../components/mainTypesLabel';
 import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import PokemonListUi from '@/components/pokemonListUi';
+import { Button } from '@/components/ui/button';
 
 const HomePage = () => {
+  const { reset } = useQueryErrorResetBoundary();
   return (
     <div className='flex flex-col justify-center items-center'>
       {/* 타이틀 */}
@@ -11,11 +16,25 @@ const HomePage = () => {
         <div className='absolute bottom-0 right-10 text-xl'>1242 마리</div>
       </header> */}
       {/* 타입리스트 */}
+
       <MainTypesLabel />
+
       {/* 리스트 */}
-      <Suspense>
-        <PokemonList />
-      </Suspense>
+      <ErrorBoundary
+        onReset={reset}
+        fallbackRender={({ resetErrorBoundary }) => (
+          <div className='flex flex-col gap-10 h-screen justify-center items-center dark:text-white'>
+            <p className='text-xl'>네트워크 에러가 발생했습니다.</p>
+            <Button onClick={() => resetErrorBoundary()} size={'lg'}>
+              재시도
+            </Button>
+          </div>
+        )}
+      >
+        <Suspense fallback={<PokemonListUi />}>
+          <PokemonList />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
