@@ -4,7 +4,7 @@ import { ModeToggle } from './mode-toggle';
 
 const NavBar = () => {
   return (
-    <div className='fixed top-0 w-full bg-red-300 z-10'>
+    <div className='fixed top-0 w-full bg-red-300 z-10 h-20'>
       <div className='container mx-auto'>
         <div className='flex justify-between'>
           <Link to={'/'} className='text-3xl m-5 dark:text-slate-100'>

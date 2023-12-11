@@ -1,21 +1,19 @@
 import PokemonList from '../components/pokemonList';
 import MainTypesLabel from '../components/mainTypesLabel';
 import { Suspense } from 'react';
-import PokemonListUi from '../components/pokemonListUi';
 
 const HomePage = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
       {/* 타이틀 */}
-      <div className='flex justify-center my-5 sm:my-10'>
-        <div className='text-2xl md:text-3xl dark:text-slate-100'>포켓몬</div>
-        {/* <input className='border-2' />
-        <button className='bg-indigo-300 '>검색</button> */}
-      </div>
+      {/* <header className='flex relative justify-center w-full items-center border-2 rounded-xl mx-10 my-5 p-5 text-5xl $  bg-red-400 text-white'>
+        <h2>포켓몬</h2>
+        <div className='absolute bottom-0 right-10 text-xl'>1242 마리</div>
+      </header> */}
       {/* 타입리스트 */}
       <MainTypesLabel />
       {/* 리스트 */}
-      <Suspense fallback={<PokemonListUi />}>
+      <Suspense>
         <PokemonList />
       </Suspense>
     </div>

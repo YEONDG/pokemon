@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { PokemonDetailType, PokemonSpecies } from '../types';
 import PokemonTypeLabel from './pokemonTypeLabel';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useIsImgLoaded } from '../hooks/useIsImgLoaded';
 import { pokemonImgSrc } from '../utils/path';
 
 interface PokemonsProps {
@@ -34,10 +33,10 @@ const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-72 w-full'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:bg-slate-400 hover:shadow-2xl overflow-hidden h-full sm:h-72 w-full'
       >
-        <div className='flex h-full flex-col w-full justify-center items-center'>
-          <div className='flex h-full dark:text-slate-100'>
+        <div className='flex h-full sm:h-full flex-col w-full justify-end items-center'>
+          <div className='hidden sm:flex h-full dark:text-slate-100'>
             #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
           </div>
           <LazyLoadImage

@@ -6,9 +6,9 @@ const Root = () => {
   return (
     <>
       <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-        <div className='dark:bg-black'>
+        <div className='dark:bg-black min-h-screen'>
           <NavBar />
-          <main className='container mt-[72px] mx-auto border-2 min-h-screen'>
+          <main className='container pt-20 mx-auto border-2 '>
             <Outlet />
           </main>
         </div>

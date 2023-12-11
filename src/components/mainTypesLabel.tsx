@@ -7,7 +7,7 @@ const MainTypesLabel = () => {
 
   return (
     <>
-      <section className='px-2'>
+      <section className='px-2 my-10'>
         <div className='flex flex-wrap gap-2 text-lg text-white font-bold max-w-3xl'>
           {data.map((type) => (
             <Link
