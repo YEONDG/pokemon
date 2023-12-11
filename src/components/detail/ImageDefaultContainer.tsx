@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { PokemonImgType } from '../../types';
 import Img from '../ui/Img';
 

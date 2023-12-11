@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPokemonInfoWithId, getPokemonSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ interface PokemonsProps {
   url: string;
 }
 
-const PokemonCard: React.FC<PokemonsProps> = ({ name }) => {
+const PokemonCard: FC<PokemonsProps> = ({ name }) => {
   const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
     queryKey: ['pokemonInfo', name],
     queryFn: () => getPokemonInfoWithId(name),

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ProgressBar from '../ui/ProgressBar';
 import { PokemonDetailType } from '../../types';
 
