@@ -1,10 +1,5 @@
 import axiosInstanse from '../../utils/axios';
 
-export const getPokemonInfoUrl = async (url: string) => {
-  const { data } = await axiosInstanse.get(url);
-  return data;
-};
-
 export const getPokemonInfoWithId = async (Id: string | undefined) => {
   const { data } = await axiosInstanse.get(`pokemon/${Id}`);
   return data;
@@ -20,16 +15,6 @@ export const getPoketmonListAll = async ({ pageParam = 0 }) => {
 
 export const getPokemonSpec = async (Id: string | undefined) => {
   const { data } = await axiosInstanse.get(`pokemon-species/${Id}`);
-  return data;
-};
-
-export const getPokemonSpecWithUrl = async (url: string) => {
-  const { data } = await axiosInstanse.get(url);
-  return data;
-};
-
-export const getPokemonType = async () => {
-  const { data } = await axiosInstanse.get('type');
   return data;
 };
 
