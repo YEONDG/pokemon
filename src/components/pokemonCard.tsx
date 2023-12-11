@@ -27,7 +27,7 @@ const PokemonCard: FC<PokemonsProps> = ({ name }) => {
     staleTime: Infinity,
   });
 
-  const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) : '';
+  const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) ?? '' : '';
 
   return (
     <>

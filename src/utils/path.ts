@@ -1,6 +1,6 @@
 import { PokemonDetailType } from '../types';
 
-export const pokemonImgSrc = (pokemonInfo: PokemonDetailType): string => {
+export const pokemonImgSrc = (pokemonInfo: PokemonDetailType) => {
   return (
     pokemonInfo?.sprites?.versions?.['generation-v']?.['black-white']?.animated
       ?.front_default ??
