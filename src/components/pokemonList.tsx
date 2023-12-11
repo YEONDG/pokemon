@@ -1,16 +1,9 @@
-import React, {
-  memo,
-  useCallback,
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-} from 'react';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import { getPoketmonListAll } from '../apis/pokemon/pokemon';
+import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
+
 import PokemonCard from './pokemonCard';
 import { FixedSizeList } from 'react-window';
 import debounce from 'lodash/debounce';
+import { useSuspenseInfinitePoke } from '@/hooks/useSuspenseInfinitePoke';
 
 const MemoizedPokemonCard = memo(PokemonCard);
 
@@ -19,51 +12,37 @@ const PokemonList = () => {
   const listRef = useRef<FixedSizeList>(null);
 
   const { data, isError, fetchNextPage, hasNextPage, isFetching } =
-    useSuspenseInfiniteQuery({
-      queryKey: ['pokemons'],
-      queryFn: getPoketmonListAll,
-      initialPageParam: 0,
-      getNextPageParam: (lastPage) => {
-        const { next } = lastPage;
-        if (!next) return undefined;
-        return Number(new URL(next).searchParams.get('offset'));
-      },
-      staleTime: Infinity,
-    });
+    useSuspenseInfinitePoke();
 
-  const Row = useMemo(
-    () =>
-      memo(
-        ({ index, style }: { index: number; style: React.CSSProperties }) => {
-          const groupIndex = Math.floor(index / 4);
-          const itemIndex = index % 4;
-          const groupData = data?.pages[groupIndex];
+  const Row = useCallback(
+    memo(({ index, style }: { index: number; style: React.CSSProperties }) => {
+      console.log('메모되나요?');
+      const groupIndex = Math.floor(index / 4);
+      const itemIndex = index % 4;
+      const groupData = data?.pages?.[groupIndex];
 
-          return (
-            <div style={style} className='flex bg-red-50 sm:gap-4 pt-2'>
-              <React.Fragment>
-                {[0, 1, 2, 3].map((subItemIndex) => {
-                  const subPokemon =
-                    groupData?.results?.[itemIndex * 4 + subItemIndex];
+      return (
+        <div
+          style={style}
+          className='grid grid-cols-2 sm:grid-cols-4  sm:gap-2'
+        >
+          {[0, 1, 2, 3].map((subItemIndex) => {
+            const subPokemon =
+              groupData?.results?.[itemIndex * 4 + subItemIndex];
 
-                  return (
-                    <React.Fragment key={subPokemon.name}>
-                      <MemoizedPokemonCard
-                        name={subPokemon.name}
-                        url={subPokemon.url}
-                      />
-                    </React.Fragment>
-                  );
-                })}
-              </React.Fragment>
-            </div>
-          );
-        }
-      ),
+            return (
+              <MemoizedPokemonCard
+                key={subPokemon?.name}
+                name={subPokemon?.name}
+                url={subPokemon?.url}
+              />
+            );
+          })}
+        </div>
+      );
+    }),
     [data]
   );
-
-  const itemCount = (data?.pages.length || 0) * 4;
 
   const loadMoreItems = useCallback(() => {
     if (hasNextPage && !isFetching) {
@@ -73,10 +52,9 @@ const PokemonList = () => {
 
   const debouncedHandleScroll = useCallback(
     debounce(({ scrollOffset }) => {
-      console.log('Debounced Scroll Offset:', scrollOffset);
       setScrollPosition(scrollOffset);
       localStorage.setItem('scrollPosition', scrollOffset.toString());
-    }, 500), // 디바운스 시간 (200ms)
+    }, 500),
     []
   );
 
@@ -102,6 +80,8 @@ const PokemonList = () => {
   if (isError) {
     return <div>에러발생했습니다.</div>;
   }
+
+  const itemCount = (data?.pages.length || 0) * 4;
 
   return (
     <>
