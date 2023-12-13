@@ -1,5 +1,5 @@
 const PokemonListUi = () => {
-  const boxCount = 12;
+  const boxCount = 8;
   return (
     <>
       <div className='grid grid-cols-2 sm:grid-cols-4 sm:gap-2 w-full h-[800px]'>
