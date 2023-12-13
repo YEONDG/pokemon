@@ -5,12 +5,12 @@ import {
   getPokemonInfoWithId,
   getPokemonSpec,
 } from '../../apis/pokemon/pokemon';
-import PokemonTypeLabel from '../../components/pokemonTypeLabel';
-import ImageDefaultContainer from '../../components/detail/ImageDefaultContainer';
-import ImageVersionsContainer from '../../components/detail/ImageVersionsContainer';
-import DefalutInfo from '../../components/detail/DefalutInfo';
+import { PokemonTypeLabel } from '../../components/pokemonTypeLabel';
+import { ImageDefaultContainer } from '../../components/detail/ImageDefaultContainer';
+import { ImageVersionsContainer } from '../../components/detail/ImageVersionsContainer';
+import { DefalutInfo } from '../../components/detail/DefalutInfo';
 
-import Img from '../../components/ui/Img';
+import { Img } from '../../components/ui/Img';
 import { typeBgColor } from '../../utils/typeColor';
 import { pokemonImgSrc } from '../../utils/path';
 

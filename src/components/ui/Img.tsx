@@ -29,5 +29,3 @@ export const Img: React.FC<ImgProps> = ({
     </div>
   );
 };
-
-export default Img;

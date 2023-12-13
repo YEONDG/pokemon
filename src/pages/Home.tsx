@@ -1,11 +1,13 @@
-import PokemonList from '../components/pokemonList';
-import MainTypesLabel from '../components/mainTypesLabel';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import PokemonListUi from '@/components/pokemonListUi';
-import { Button } from '@/components/ui/button';
+
 import { Helmet } from 'react-helmet-async';
+
+import { PokemonListUi } from '@/components/pokemonListUi';
+import { Button } from '@/components/ui/button';
+import { MainTypesLabel } from '../components/mainTypesLabel';
+import { PokemonList } from '../components/pokemonList';
 
 const HomePage = () => {
   const { reset } = useQueryErrorResetBoundary();
@@ -14,7 +16,7 @@ const HomePage = () => {
       <Helmet>
         <title>포켓몬 도감</title>
       </Helmet>
-      <div className='flex flex-col justify-center items-center'>
+      <div className='flex flex-col justify-center items-center h-fit'>
         {/* 타이틀 */}
         {/* <header className='flex relative justify-center w-full items-center border-2 rounded-xl mx-10 my-5 p-5 text-5xl $  bg-red-400 text-white'>
         <h2>포켓몬</h2>

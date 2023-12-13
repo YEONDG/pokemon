@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import ProgressBar from '../ui/ProgressBar';
+import { ProgressBar } from '../ui/ProgressBar';
 import { PokemonDetailType } from '../../types';
 
 interface DefalutInfoProps {
   pokemonInfo?: PokemonDetailType;
 }
 
-const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
+export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
   return (
     <>
       <div className='w-[544px]'>
@@ -76,5 +76,3 @@ const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
     </>
   );
 };
-
-export default DefalutInfo;

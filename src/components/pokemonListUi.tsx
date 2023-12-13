@@ -1,4 +1,4 @@
-const PokemonListUi = () => {
+export const PokemonListUi = () => {
   const boxCount = 12;
   return (
     <>
@@ -10,8 +10,6 @@ const PokemonListUi = () => {
     </>
   );
 };
-
-export default PokemonListUi;
 
 const Box = () => {
   return (

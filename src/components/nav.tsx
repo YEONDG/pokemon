@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ModeToggle } from './mode-toggle';
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <div className='fixed top-0 w-full bg-red-300 z-10 h-20'>
       <div className='container mx-auto'>
@@ -18,5 +18,3 @@ const NavBar = () => {
     </div>
   );
 };
-
-export default NavBar;
