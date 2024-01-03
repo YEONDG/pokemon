@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { PokemonVersionsGeneration } from '../../types';
-import VersionImgSprites from './VersionImgSprites';
+import { VersionImgSprites } from './VersionImgSprites';
 
 interface ImageVersionsContainerProps {
   versions?: PokemonVersionsGeneration;
 }
-const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
+export const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
   versions,
 }) => {
   if (!versions) {
@@ -97,5 +97,3 @@ const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
     </div>
   );
 };
-
-export default ImageVersionsContainer;

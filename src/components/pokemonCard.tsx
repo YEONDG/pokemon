@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPokemonInfoWithId, getPokemonSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
 import { PokemonDetailType, PokemonSpecies } from '../types';
-import PokemonTypeLabel from './pokemonTypeLabel';
+import { PokemonTypeLabel } from './pokemonTypeLabel';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { pokemonImgSrc } from '../utils/path';
 
@@ -12,7 +12,7 @@ interface PokemonsProps {
   url: string;
 }
 
-const PokemonCard: FC<PokemonsProps> = ({ name }) => {
+export const PokemonCard: FC<PokemonsProps> = memo(({ name }) => {
   const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
     queryKey: ['pokemonInfo', name],
     queryFn: () => getPokemonInfoWithId(name),
@@ -64,6 +64,4 @@ const PokemonCard: FC<PokemonsProps> = ({ name }) => {
       </Link>
     </>
   );
-};
-
-export default PokemonCard;
+});

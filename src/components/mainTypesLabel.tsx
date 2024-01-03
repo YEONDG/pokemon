@@ -2,7 +2,7 @@ import { typeBgColor } from '../utils/typeColor';
 import { typeConverter, typeList } from '../utils/typeConverter';
 import { Link } from 'react-router-dom';
 
-const MainTypesLabel = () => {
+export const MainTypesLabel = () => {
   const data = typeList;
 
   return (
@@ -23,5 +23,3 @@ const MainTypesLabel = () => {
     </>
   );
 };
-
-export default MainTypesLabel;

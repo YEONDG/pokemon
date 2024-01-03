@@ -1,104 +1,110 @@
-import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
-import PokemonCard from './pokemonCard';
-import { FixedSizeList } from 'react-window';
-import debounce from 'lodash/debounce';
+import { useEffect, useRef } from 'react';
+import { PokemonCard } from './pokemonCard';
 import { useSuspenseInfinitePoke } from '@/hooks/useSuspenseInfinitePoke';
 
-const MemoizedPokemonCard = memo(PokemonCard);
+import { useWindowVirtualizer } from '@tanstack/react-virtual';
 
-const PokemonList = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const listRef = useRef<FixedSizeList>(null);
+const ITEMS_PER_ROW = 4;
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
+export const PokemonList = () => {
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useSuspenseInfinitePoke();
 
-  const Row = useCallback(
-    memo(({ index, style }: { index: number; style: React.CSSProperties }) => {
-      const groupIndex = Math.floor(index / 4);
-      const itemIndex = index % 4;
-      const groupData = data?.pages?.[groupIndex];
+  const allRows = data ? data.pages.flatMap((d) => d.results) : [];
+  console.log(allRows.length / 4, '길이는?');
 
-      return (
-        <div
-          style={style}
-          className='grid grid-cols-2 sm:grid-cols-4  sm:gap-2'
-        >
-          {[0, 1, 2, 3].map((subItemIndex) => {
-            const subPokemon =
-              groupData?.results?.[itemIndex * 4 + subItemIndex];
+  const rowVirtualizer = useWindowVirtualizer({
+    count: hasNextPage
+      ? allRows.length / ITEMS_PER_ROW + 1
+      : allRows.length / ITEMS_PER_ROW,
+    estimateSize: () => 400,
+    overscan: 5,
+    scrollMargin: listRef.current?.offsetTop ?? 0,
+  });
 
-            return (
-              <MemoizedPokemonCard
-                key={subPokemon?.name}
-                name={subPokemon?.name}
-                url={subPokemon?.url}
-              />
-            );
-          })}
-        </div>
-      );
-    }),
-    [data]
-  );
+  // console.log(listRef.current?.offsetTop, '이것은?');
+  // console.log(rowVirtualizer, '안에 뭐있나');
+  console.log(rowVirtualizer.getTotalSize(), '총높이');
 
-  const loadMoreItems = useCallback(() => {
-    if (hasNextPage && !isFetching) {
+  useEffect(() => {
+    const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
+    console.log(lastItem, 'lastItem');
+    if (!lastItem) {
+      return;
+    }
+
+    if (
+      lastItem.index >= allRows.length / ITEMS_PER_ROW - 1 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
       fetchNextPage();
     }
-  }, [hasNextPage, isFetching, fetchNextPage]);
-
-  const debouncedHandleScroll = useCallback(
-    debounce(({ scrollOffset }) => {
-      setScrollPosition(scrollOffset);
-      localStorage.setItem('scrollPosition', scrollOffset.toString());
-    }, 500),
-    []
-  );
-
-  useEffect(() => {
-    // 컴포넌트가 마운트될 때 로컬 스토리지에서 스크롤 위치를 가져와서 적용
-    if (data?.pages.length === 1) {
-      setScrollPosition(0);
-      localStorage.setItem('scrollPosition', '0');
-    }
-    const savedScrollPosition = localStorage.getItem('scrollPosition');
-    if (savedScrollPosition) {
-      setScrollPosition(Number(savedScrollPosition));
-    }
-  }, [data?.pages]);
-
-  useEffect(() => {
-    // 마운트 후 스크롤 위치로 이동
-    if (listRef.current && scrollPosition !== 0) {
-      listRef.current.scrollTo(scrollPosition);
-    }
-  }, [scrollPosition]);
-
-  const itemCount = (data?.pages.length || 0) * 4;
+  }, [
+    hasNextPage,
+    fetchNextPage,
+    allRows.length,
+    isFetchingNextPage,
+    rowVirtualizer.getVirtualItems(),
+  ]);
 
   return (
     <>
-      <section className='w-full'>
-        <FixedSizeList
-          height={800}
-          itemCount={itemCount}
-          itemSize={400}
-          width='100%'
-          onScroll={debouncedHandleScroll}
-          onItemsRendered={({ visibleStopIndex }) => {
-            if (visibleStopIndex === itemCount - 1 && !isFetching) {
-              loadMoreItems();
-              console.log('실행');
-            }
-          }}
-          ref={listRef}
-        >
-          {Row}
-        </FixedSizeList>
+      <section
+        className='w-full'
+        ref={listRef}
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+          const isLoaderRow = virtualRow.index > allRows.length - 1;
+
+          const startIdx = virtualRow.index * ITEMS_PER_ROW;
+          const endIdx = (virtualRow.index + 1) * ITEMS_PER_ROW;
+          const post = allRows.slice(startIdx, endIdx);
+
+          return (
+            <div
+              key={virtualRow.index}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${
+                  virtualRow.start - rowVirtualizer.options.scrollMargin
+                }px)`,
+              }}
+            >
+              {isLoaderRow ? (
+                hasNextPage ? (
+                  '로딩중 입니다..'
+                ) : (
+                  '로딩할 항목이 더 이상 없습니다.'
+                )
+              ) : (
+                <div className='grid grid-cols-2 sm:grid-cols-4  sm:gap-2'>
+                  {post.map((Item) => {
+                    return (
+                      <PokemonCard
+                        key={Item?.name}
+                        name={Item?.name}
+                        url={Item?.url}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </section>
     </>
   );
 };
-
-export default PokemonList;
