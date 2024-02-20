@@ -1,3 +1,5 @@
+import { Skeleton } from '../ui/skeleton';
+
 export const PokemonListUi = () => {
   const boxCount = 8;
   return (
@@ -12,7 +14,5 @@ export const PokemonListUi = () => {
 };
 
 const Box = () => {
-  return (
-    <div className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:bg-slate-400 hover:shadow-2xl overflow-hidden sm:mb-[105px] sm:h-72 w-full'></div>
-  );
+  return <Skeleton className='w-full h-[300px]' />;
 };

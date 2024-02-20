@@ -6,7 +6,7 @@ import { PokemonCard } from '../../../components/pokemonCard';
 import { typeConverter } from '../../../utils/typeConverter';
 import { typeBgColor } from '../../../utils/typeColor';
 import { PokemonTypeList } from '../../../types';
-import { PokemonListUi } from '@/components/pokemonListUi';
+import { PokemonListUi } from '@/components/skeleton/pokemonListUi';
 
 const PokemonTypePage = () => {
   const { type } = useParams();

@@ -13,7 +13,6 @@ export const PokemonList = () => {
     useSuspenseInfinitePoke();
 
   const allRows = data ? data.pages.flatMap((d) => d.results) : [];
-  console.log(allRows.length / 4, '길이는?');
 
   const rowVirtualizer = useWindowVirtualizer({
     count: hasNextPage
@@ -24,13 +23,8 @@ export const PokemonList = () => {
     scrollMargin: listRef.current?.offsetTop ?? 0,
   });
 
-  // console.log(listRef.current?.offsetTop, '이것은?');
-  // console.log(rowVirtualizer, '안에 뭐있나');
-  console.log(rowVirtualizer.getTotalSize(), '총높이');
-
   useEffect(() => {
     const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
-    console.log(lastItem, 'lastItem');
     if (!lastItem) {
       return;
     }
@@ -82,6 +76,7 @@ export const PokemonList = () => {
                 }px)`,
               }}
             >
+              {' '}
               {isLoaderRow ? (
                 hasNextPage ? (
                   '로딩중 입니다..'

@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPokemonInfoWithId, getPokemonSpec } from '../apis/pokemon/pokemon';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ interface PokemonsProps {
   url: string;
 }
 
-export const PokemonCard: FC<PokemonsProps> = memo(({ name }) => {
+export const PokemonCard = memo(({ name }: PokemonsProps) => {
   const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
     queryKey: ['pokemonInfo', name],
     queryFn: () => getPokemonInfoWithId(name),
@@ -27,7 +27,9 @@ export const PokemonCard: FC<PokemonsProps> = memo(({ name }) => {
     staleTime: Infinity,
   });
 
-  const imgSrc = pokemonInfo ? pokemonImgSrc(pokemonInfo) ?? '' : '';
+  const imgSrc = pokemonInfo
+    ? pokemonImgSrc(pokemonInfo) ?? undefined
+    : undefined;
 
   return (
     <>
@@ -37,11 +39,10 @@ export const PokemonCard: FC<PokemonsProps> = memo(({ name }) => {
       >
         <div className='flex h-full sm:h-full flex-col w-full justify-end items-center'>
           <div className='hidden sm:flex h-full dark:text-slate-100'>
-            #{pokemonInfo?.id} {pokemonSpeciesInfo?.name}
+            {pokemonInfo?.id} {pokemonSpeciesInfo?.name}
           </div>
           <LazyLoadImage
-            className={''}
-            alt=''
+            alt={pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : ''}
             src={imgSrc}
             width={
               pokemonInfo?.sprites?.versions?.['generation-v']?.['black-white']
