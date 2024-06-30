@@ -35,24 +35,27 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:bg-slate-400 hover:shadow-2xl overflow-hidden h-full sm:h-72 w-full'
+        className='flex flex-col border-2 justify-center items-center rounded-lg shadow-md transition hover:bg-slate-400 hover:shadow-lg overflow-hidden h-full sm:h-72 w-full'
       >
         <div className='flex h-full sm:h-full flex-col w-full justify-end items-center'>
           <div className='hidden sm:flex h-full dark:text-slate-100'>
             {pokemonInfo?.id} {pokemonSpeciesInfo?.name}
           </div>
-          <LazyLoadImage
-            alt={pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : ''}
-            src={imgSrc}
-            width={
-              pokemonInfo?.sprites?.versions?.['generation-v']?.['black-white']
-                ?.animated?.front_default
-                ? 80
-                : 120
-            }
-            height={120}
-          />
-
+          <div className='flex items-center justify-center w-full h-24 sm:h-48'>
+            <LazyLoadImage
+              alt={pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : ''}
+              src={imgSrc}
+              width={
+                pokemonInfo?.sprites?.versions?.['generation-v']?.[
+                  'black-white'
+                ]?.animated?.front_default
+                  ? 80
+                  : 120
+              }
+              height={120}
+              className='object-contain'
+            />
+          </div>
           <div className='text-3xl font-semibold dark:text-slate-100'>
             {pokemonSpeciesInfo?.names[2].name}
           </div>

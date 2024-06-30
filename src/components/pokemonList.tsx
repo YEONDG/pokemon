@@ -47,7 +47,7 @@ export const PokemonList = () => {
   return (
     <>
       <section
-        className='w-full'
+        className='w-full '
         ref={listRef}
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
@@ -64,6 +64,7 @@ export const PokemonList = () => {
 
           return (
             <div
+              className='flex flex-col justify-center'
               key={virtualRow.index}
               style={{
                 position: 'absolute',
@@ -84,7 +85,7 @@ export const PokemonList = () => {
                   '로딩할 항목이 더 이상 없습니다.'
                 )
               ) : (
-                <div className='grid grid-cols-2 sm:grid-cols-4  sm:gap-2'>
+                <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
                   {post.map((Item) => {
                     return (
                       <PokemonCard
