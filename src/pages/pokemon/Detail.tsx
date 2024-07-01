@@ -48,7 +48,7 @@ const PokemonDetailPage = () => {
         </title>
       </Helmet>
 
-      <div className='flex flex-col justify-center items-center w-full'>
+      <div className='flex flex-col justify-center items-center max-w-xl mx-auto w-full'>
         <header
           className={`flex relative justify-center items-center rounded-xl mx-10 mt-5 p-5 text-5xl ${typeBgColor[type]} text-white w-full`}
         >
@@ -57,8 +57,8 @@ const PokemonDetailPage = () => {
           </h2>
         </header>
 
-        <main className='flex flex-col justify-center items-center max-w-3xl gap-10 mt-20'>
-          <section className='flex flex-col justify-center items-center w-72 h-64'>
+        <main className='flex flex-col justify-center items-center gap-5 mt-10 w-full'>
+          <section className='flex flex-col justify-end items-center w-72 h-64 '>
             <Img
               className={'h-32 w-36 m-10'}
               alt='pokemon Img'

@@ -9,11 +9,11 @@ interface DefalutInfoProps {
 export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
   return (
     <>
-      <div className='w-[544px]'>
-        <p className='text-3xl bg-slate-300 rounded-xl px-3 py-1 my-5 text-center w-56 '>
+      <div className='flex flex-col w-full'>
+        <p className='text-3xl bg-slate-300 rounded-xl px-3 py-1 my-5 text-center '>
           기본 정보
         </p>
-        <div className='flex gap-10 mx-5'>
+        <div className='flex justify-center gap-10 mx-5'>
           <p className='text-2xl dark:text-white'>
             키{' '}
             <span>
@@ -27,7 +27,7 @@ export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
             </span>
           </p>
         </div>
-        <p className='text-3xl bg-slate-300 rounded-xl px-3 py-1 my-5 text-center w-56'>
+        <p className='text-3xl bg-slate-300 rounded-xl px-3 py-1 my-5 text-center w-full'>
           기본 스탯
         </p>
         <div className='flex justify-between mx-5 gap-5'>
