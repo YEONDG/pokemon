@@ -8,25 +8,25 @@ interface ImgProps {
   lazy?: boolean;
 }
 
-export const Img: React.FC<ImgProps> = ({
+const ImgComponent: React.FC<ImgProps> = ({
   src,
   alt,
-  className,
+  className = '',
   lazy = true,
 }) => {
   const { elementRef, isLoaded } = useIsImgLoaded(lazy);
   const imgClasses = `${className} ${isLoaded ? '' : 'hidden'}`;
 
-  if (!src) {
-    return <div className='w-24 h-24 flex items-center justify-center'></div>;
-  }
+  if (!src) return null;
 
   return (
     <div
       ref={elementRef}
-      className='flex items-center justify-center mx-5 w-24'
+      className={`flex justify-center items-center w-24 h-24`}
     >
       <img src={src} alt={alt} className={imgClasses} />
     </div>
   );
 };
+
+export const Img = React.memo(ImgComponent);

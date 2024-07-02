@@ -16,8 +16,11 @@ import { pokemonImgSrc } from '../../utils/path';
 
 import { PokemonDetailType, PokemonSpecies } from '../../types';
 import { Helmet } from 'react-helmet-async';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 const PokemonDetailPage = () => {
+  useScrollToTop();
+
   const { name: Id } = useParams();
 
   const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
@@ -58,9 +61,9 @@ const PokemonDetailPage = () => {
         </header>
 
         <main className='flex flex-col justify-center items-center gap-5 mt-10 w-full'>
-          <section className='flex flex-col justify-end items-center w-72 h-64 '>
+          <section className='flex flex-col justify-end items-center w-72 h-64'>
             <Img
-              className={'h-32 w-36 m-10'}
+              className={'h-32 w-36 mb-10'}
               alt='pokemon Img'
               lazy={true}
               src={imgSrc}
@@ -74,7 +77,7 @@ const PokemonDetailPage = () => {
           <section className='w-full'>
             <DefalutInfo pokemonInfo={pokemonInfo} />
           </section>
-          <section className='w-full'>
+          <section className='w-full '>
             <ImageDefaultContainer sprites={pokemonInfo?.sprites} />
             <ImageVersionsContainer versions={pokemonInfo?.sprites?.versions} />
           </section>
