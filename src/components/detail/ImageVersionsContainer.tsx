@@ -1,7 +1,7 @@
 import { ImageVersionsContainerSkeleton } from "@/components/skeleton/ImageVersionsContainerSkeleton";
+import { PokemonVersionsGeneration } from "@/types";
 import { FC } from "react";
 
-import { PokemonVersionsGeneration } from "../../types";
 import { VersionImgSprites } from "./VersionImgSprites";
 
 interface ImageVersionsContainerProps {

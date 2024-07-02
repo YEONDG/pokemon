@@ -1,4 +1,4 @@
-import axiosInstanse from "../../utils/axios";
+import axiosInstanse from "@/utils/axios";
 
 export const getPokemonInfoWithId = async (Id: string | undefined) => {
   const { data } = await axiosInstanse.get(`pokemon/${Id}`);

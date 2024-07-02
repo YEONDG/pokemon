@@ -1,6 +1,5 @@
+import { useIsImgLoaded } from "@/hooks/useIsImgLoaded";
 import React from "react";
-
-import { useIsImgLoaded } from "../../hooks/useIsImgLoaded";
 
 interface ImgProps {
   src: string | null;

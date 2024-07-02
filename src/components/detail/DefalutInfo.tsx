@@ -1,7 +1,6 @@
+import { ProgressBar } from "@/components/ui/ProgressBar";
+import { PokemonDetailType } from "@/types";
 import { FC } from "react";
-
-import { PokemonDetailType } from "../../types";
-import { ProgressBar } from "../ui/ProgressBar";
 
 interface DefalutInfoProps {
   pokemonInfo?: PokemonDetailType;

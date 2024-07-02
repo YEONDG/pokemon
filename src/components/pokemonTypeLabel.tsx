@@ -1,8 +1,7 @@
+import { PokemonBasic } from "@/types";
+import { typeBgColor } from "@/utils/typeColor";
+import { typeConverter } from "@/utils/typeConverter";
 import React from "react";
-
-import { PokemonBasic } from "../types";
-import { typeBgColor } from "../utils/typeColor";
-import { typeConverter } from "../utils/typeConverter";
 
 interface typeLabelProps {
   types: PokemonBasic;

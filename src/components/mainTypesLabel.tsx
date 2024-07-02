@@ -1,7 +1,6 @@
+import { typeBgColor } from "@/utils/typeColor";
+import { typeConverter, typeList } from "@/utils/typeConverter";
 import { Link } from "react-router-dom";
-
-import { typeBgColor } from "../utils/typeColor";
-import { typeConverter, typeList } from "../utils/typeConverter";
 
 export const MainTypesLabel = () => {
   const data = typeList;

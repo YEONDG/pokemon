@@ -1,8 +1,7 @@
+import { ImageDefaultContainerSkeleton } from "@/components/skeleton/ImageDefaultContainerSkeleton";
+import { Img } from "@/components/ui/Img";
+import { PokemonImgType } from "@/types";
 import { FC } from "react";
-
-import { PokemonImgType } from "../../types";
-import { ImageDefaultContainerSkeleton } from "../skeleton/ImageDefaultContainerSkeleton";
-import { Img } from "../ui/Img";
 
 interface ImageDefaultContainerProps {
   sprites?: PokemonImgType;
