@@ -4,7 +4,7 @@ import { useIsElementInViewport } from './useIsElementInViewport';
 export const useIsImgLoaded = (lazy: boolean) => {
   const { elementRef, isVisible } = useIsElementInViewport({
     rootMargin: '1000px 0px 1000px 0px',
-    threshold: 1,
+    threshold: 0,
   });
   const [isLoaded, setIsLoaded] = useState(!lazy);
 
