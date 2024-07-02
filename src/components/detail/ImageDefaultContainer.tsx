@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { PokemonImgType } from '../../types';
 import { Img } from '../ui/Img';
+import { ImageDefaultContainerSkeleton } from '../skeleton/ImageDefaultContainerSkeleton';
 
 interface ImageDefaultContainerProps {
   sprites?: PokemonImgType;
@@ -10,7 +11,7 @@ export const ImageDefaultContainer: FC<ImageDefaultContainerProps> = ({
   sprites,
 }) => {
   if (!sprites) {
-    return null;
+    return <ImageDefaultContainerSkeleton />;
   }
 
   return (
