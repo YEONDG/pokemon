@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
+import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 
 import { getPokemonTypeWithName } from "../../../apis/pokemon/pokemon";
 import { PokemonCard } from "../../../components/pokemonCard";
-import { typeConverter } from "../../../utils/typeConverter";
-import { typeBgColor } from "../../../utils/typeColor";
 import { PokemonTypeList } from "../../../types";
-import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
+import { typeBgColor } from "../../../utils/typeColor";
+import { typeConverter } from "../../../utils/typeConverter";
 
 const PokemonTypePage = () => {
   const { type } = useParams();

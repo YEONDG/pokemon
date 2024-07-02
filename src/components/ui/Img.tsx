@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useIsImgLoaded } from "../../hooks/useIsImgLoaded";
 
 interface ImgProps {

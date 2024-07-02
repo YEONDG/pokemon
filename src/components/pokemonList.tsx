@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from "react";
-import { PokemonCard } from "./pokemonCard";
 import { useSuspenseInfinitePoke } from "@/hooks/useSuspenseInfinitePoke";
-
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import { useEffect, useRef } from "react";
+
+import { PokemonCard } from "./pokemonCard";
 
 const ITEMS_PER_ROW = 4;
 

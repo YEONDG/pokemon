@@ -1,15 +1,17 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+import "./index.css";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ErrorPage from "./error-page";
-import PokemonDetail from "./pages/pokemon/Detail";
-import Root from "./routes/Root";
-import PokemonTypePage from "./pages/pokemon/type/Type";
 import { HelmetProvider } from "react-helmet-async";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import ErrorPage from "./error-page";
+import Home from "./pages/Home";
+import PokemonDetail from "./pages/pokemon/Detail";
+import PokemonTypePage from "./pages/pokemon/type/Type";
+import Root from "./routes/Root";
 
 const router = createBrowserRouter([
   {

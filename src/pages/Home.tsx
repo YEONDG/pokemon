@@ -1,11 +1,10 @@
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { useQueryErrorResetBoundary } from "@tanstack/react-query";
-
-import { Helmet } from "react-helmet-async";
-
 import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
 import { Button } from "@/components/ui/button";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { Helmet } from "react-helmet-async";
+
 import { MainTypesLabel } from "../components/mainTypesLabel";
 import { PokemonList } from "../components/pokemonList";
 

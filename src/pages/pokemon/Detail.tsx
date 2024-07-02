@@ -1,22 +1,20 @@
-import { useParams } from "react-router-dom";
+import useScrollToTop from "@/hooks/useScrollToTop";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
 
 import {
   getPokemonInfoWithId,
   getPokemonSpec,
 } from "../../apis/pokemon/pokemon";
-import { PokemonTypeLabel } from "../../components/pokemonTypeLabel";
+import { DefalutInfo } from "../../components/detail/DefalutInfo";
 import { ImageDefaultContainer } from "../../components/detail/ImageDefaultContainer";
 import { ImageVersionsContainer } from "../../components/detail/ImageVersionsContainer";
-import { DefalutInfo } from "../../components/detail/DefalutInfo";
-
+import { PokemonTypeLabel } from "../../components/pokemonTypeLabel";
 import { Img } from "../../components/ui/Img";
-import { typeBgColor } from "../../utils/typeColor";
-import { pokemonImgSrc } from "../../utils/path";
-
 import { PokemonDetailType, PokemonSpecies } from "../../types";
-import { Helmet } from "react-helmet-async";
-import useScrollToTop from "@/hooks/useScrollToTop";
+import { pokemonImgSrc } from "../../utils/path";
+import { typeBgColor } from "../../utils/typeColor";
 
 const PokemonDetailPage = () => {
   useScrollToTop();

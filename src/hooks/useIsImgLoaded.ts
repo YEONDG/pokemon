@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { useIsElementInViewport } from "./useIsElementInViewport";
 
 export const useIsImgLoaded = (lazy: boolean) => {

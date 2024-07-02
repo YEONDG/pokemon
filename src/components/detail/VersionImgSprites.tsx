@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { PokemonImgBasicFrontType, PokemonVersionsImgType } from "../../types";
 import { Img } from "../ui/Img";
 

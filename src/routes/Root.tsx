@@ -1,6 +1,7 @@
-import { Outlet } from "react-router-dom";
-import { NavBar } from "../components/nav";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Outlet } from "react-router-dom";
+
+import { NavBar } from "../components/nav";
 
 const Root = () => {
   return (

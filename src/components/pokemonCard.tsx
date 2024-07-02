@@ -1,11 +1,12 @@
-import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getPokemonInfoWithId, getPokemonSpec } from "../apis/pokemon/pokemon";
-import { Link } from "react-router-dom";
-import { PokemonDetailType, PokemonSpecies } from "../types";
-import { PokemonTypeLabel } from "./pokemonTypeLabel";
+import { memo } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
+
+import { getPokemonInfoWithId, getPokemonSpec } from "../apis/pokemon/pokemon";
+import { PokemonDetailType, PokemonSpecies } from "../types";
 import { pokemonImgSrc } from "../utils/path";
+import { PokemonTypeLabel } from "./pokemonTypeLabel";
 
 interface PokemonsProps {
   name: string;
