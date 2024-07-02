@@ -1,4 +1,4 @@
-import axiosInstanse from '../../utils/axios';
+import axiosInstanse from "../../utils/axios";
 
 export const getPokemonInfoWithId = async (Id: string | undefined) => {
   const { data } = await axiosInstanse.get(`pokemon/${Id}`);
@@ -7,7 +7,7 @@ export const getPokemonInfoWithId = async (Id: string | undefined) => {
 
 const OFFSET = 16;
 export const getPoketmonListAll = async ({ pageParam = 0 }) => {
-  const { data } = await axiosInstanse.get('pokemon', {
+  const { data } = await axiosInstanse.get("pokemon", {
     params: { limit: OFFSET, offset: pageParam },
   });
   return data;

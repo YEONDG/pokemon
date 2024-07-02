@@ -1,14 +1,14 @@
-import { Outlet } from 'react-router-dom';
-import { NavBar } from '../components/nav';
-import { ThemeProvider } from '@/components/theme-provider';
+import { Outlet } from "react-router-dom";
+import { NavBar } from "../components/nav";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const Root = () => {
   return (
     <>
-      <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-        <div className='dark:bg-black h-full'>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <div className="h-full dark:bg-black">
           <NavBar />
-          <main className='container pt-20 mx-auto border-2 h-fit'>
+          <main className="container mx-auto h-fit border-2 pt-20">
             <Outlet />
           </main>
         </div>

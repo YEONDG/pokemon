@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { PokemonImgBasicFrontType, PokemonVersionsImgType } from '../../types';
-import { Img } from '../ui/Img';
+import { FC } from "react";
+import { PokemonImgBasicFrontType, PokemonVersionsImgType } from "../../types";
+import { Img } from "../ui/Img";
 
 interface VersionImgSpritesProps {
   title: string;
@@ -16,11 +16,11 @@ export const VersionImgSprites: FC<VersionImgSpritesProps> = ({
   }
   return (
     <>
-      <div className='flex flex-col justify-end items-center h-32 gap-2 p-2 rounded-xl hover:shadow-xl bg-slate-50'>
-        <div className='flex flex-wrap justify-center items-center'>
-          <Img src={sprites?.front_default} alt='front_default' />
+      <div className="flex h-32 flex-col items-center justify-end gap-2 rounded-xl bg-slate-50 p-2 hover:shadow-xl">
+        <div className="flex flex-wrap items-center justify-center">
+          <Img src={sprites?.front_default} alt="front_default" />
         </div>
-        <div className=''>{title}</div>
+        <div className="">{title}</div>
       </div>
     </>
   );

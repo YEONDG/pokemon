@@ -1,7 +1,7 @@
-import React from 'react';
-import { PokemonBasic } from '../types';
-import { typeConverter } from '../utils/typeConverter';
-import { typeBgColor } from '../utils/typeColor';
+import React from "react";
+import { PokemonBasic } from "../types";
+import { typeConverter } from "../utils/typeConverter";
+import { typeBgColor } from "../utils/typeColor";
 
 interface typeLabelProps {
   types: PokemonBasic;
@@ -13,9 +13,9 @@ export const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
 
   return (
     <div
-      className={`flex w-full rounded-md justify-center items-center ${typeBgColor[typeName]}`}
+      className={`flex w-full items-center justify-center rounded-md ${typeBgColor[typeName]}`}
     >
-      <div className='text-xl text-white font-bold '>{translatedTypeName}</div>
+      <div className="text-xl font-bold text-white">{translatedTypeName}</div>
     </div>
   );
 };

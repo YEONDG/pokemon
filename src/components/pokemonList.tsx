@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { PokemonCard } from './pokemonCard';
-import { useSuspenseInfinitePoke } from '@/hooks/useSuspenseInfinitePoke';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef } from "react";
+import { PokemonCard } from "./pokemonCard";
+import { useSuspenseInfinitePoke } from "@/hooks/useSuspenseInfinitePoke";
 
-import { useWindowVirtualizer } from '@tanstack/react-virtual';
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 
 const ITEMS_PER_ROW = 4;
 
@@ -47,12 +48,12 @@ export const PokemonList = () => {
   return (
     <>
       <section
-        className='w-full '
+        className="w-full"
         ref={listRef}
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
-          width: '100%',
-          position: 'relative',
+          width: "100%",
+          position: "relative",
         }}
       >
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
@@ -64,28 +65,28 @@ export const PokemonList = () => {
 
           return (
             <div
-              className='flex flex-col justify-center'
+              className="flex flex-col justify-center"
               key={virtualRow.index}
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
+                width: "100%",
                 height: `${virtualRow.size}px`,
                 transform: `translateY(${
                   virtualRow.start - rowVirtualizer.options.scrollMargin
                 }px)`,
               }}
             >
-              {' '}
+              {" "}
               {isLoaderRow ? (
                 hasNextPage ? (
-                  '로딩중 입니다..'
+                  "로딩중 입니다.."
                 ) : (
-                  '로딩할 항목이 더 이상 없습니다.'
+                  "로딩할 항목이 더 이상 없습니다."
                 )
               ) : (
-                <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {post.map((Item) => {
                     return (
                       <PokemonCard

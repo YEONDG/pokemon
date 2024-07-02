@@ -1,14 +1,14 @@
-import { typeBgColor } from '../utils/typeColor';
-import { typeConverter, typeList } from '../utils/typeConverter';
-import { Link } from 'react-router-dom';
+import { typeBgColor } from "../utils/typeColor";
+import { typeConverter, typeList } from "../utils/typeConverter";
+import { Link } from "react-router-dom";
 
 export const MainTypesLabel = () => {
   const data = typeList;
 
   return (
     <>
-      <section className='px-2 my-10'>
-        <div className='flex flex-wrap gap-2 text-lg text-white font-bold max-w-3xl'>
+      <section className="my-10 px-2">
+        <div className="flex max-w-3xl flex-wrap gap-2 text-lg font-bold text-white">
           {data.map((type) => (
             <Link
               to={`pokemon/type/${type}`}

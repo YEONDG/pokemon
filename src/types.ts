@@ -108,33 +108,33 @@ export interface PokemonVersionsImgWithAnimatedType
 }
 
 export interface PokemonVersionsGeneration {
-  'generation-i': {
-    'red-blue': PokemonVersionsImgType;
+  "generation-i": {
+    "red-blue": PokemonVersionsImgType;
     yellow: PokemonVersionsImgType;
   };
-  'generation-ii': {
+  "generation-ii": {
     crystal: PokemonVersionsImgType;
     gold: PokemonVersionsImgType;
     silver: PokemonVersionsImgType;
   };
-  'generation-iii': {
+  "generation-iii": {
     emerald: PokemonVersionsImgType;
-    'firered-leafgreen': PokemonVersionsImgType;
-    'ruby-sapphire': PokemonVersionsImgType;
+    "firered-leafgreen": PokemonVersionsImgType;
+    "ruby-sapphire": PokemonVersionsImgType;
   };
-  'generation-iv': {
-    'diamond-pearl': PokemonVersionsImgType;
-    'heartgold-soulsilver': PokemonVersionsImgType;
+  "generation-iv": {
+    "diamond-pearl": PokemonVersionsImgType;
+    "heartgold-soulsilver": PokemonVersionsImgType;
     platinum: PokemonVersionsImgType;
   };
-  'generation-v': {
-    'black-white': PokemonVersionsImgWithAnimatedType;
+  "generation-v": {
+    "black-white": PokemonVersionsImgWithAnimatedType;
   };
-  'generation-vi': {
-    'omegaruby-alphasapphire': PokemonImgBasicFrontType;
-    'x-y': PokemonImgBasicFrontType;
+  "generation-vi": {
+    "omegaruby-alphasapphire": PokemonImgBasicFrontType;
+    "x-y": PokemonImgBasicFrontType;
   };
-  'generation-vii': { 'ultra-sun-ultra-moon': PokemonImgBasicFrontType };
+  "generation-vii": { "ultra-sun-ultra-moon": PokemonImgBasicFrontType };
 }
 
 export interface PokemonOther {
@@ -148,7 +148,7 @@ export interface PokemonOther {
     front_shiny: string | null;
     front_shiny_female: string | null;
   };
-  'official-artwork': {
+  "official-artwork": {
     front_default: string | null;
     front_shiny: string | null;
   };

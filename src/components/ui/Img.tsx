@@ -1,5 +1,5 @@
-import React from 'react';
-import { useIsImgLoaded } from '../../hooks/useIsImgLoaded';
+import React from "react";
+import { useIsImgLoaded } from "../../hooks/useIsImgLoaded";
 
 interface ImgProps {
   src: string | null;
@@ -11,18 +11,18 @@ interface ImgProps {
 const ImgComponent: React.FC<ImgProps> = ({
   src,
   alt,
-  className = '',
+  className = "",
   lazy = true,
 }) => {
   const { elementRef, isLoaded } = useIsImgLoaded(lazy);
-  const imgClasses = `${className} ${isLoaded ? '' : 'hidden'}`;
+  const imgClasses = `${className} ${isLoaded ? "" : "hidden"}`;
 
   if (!src) return null;
 
   return (
     <div
       ref={elementRef}
-      className={`flex justify-center items-center w-24 h-24`}
+      className={`flex h-24 w-24 items-center justify-center`}
     >
       <img src={src} alt={alt} className={imgClasses} />
     </div>

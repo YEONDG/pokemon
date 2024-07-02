@@ -1,5 +1,5 @@
-import { getPoketmonListAll } from '@/apis/pokemon/pokemon';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { getPoketmonListAll } from "@/apis/pokemon/pokemon";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 export const useSuspenseInfinitePoke = () => {
   const {
@@ -10,13 +10,13 @@ export const useSuspenseInfinitePoke = () => {
     isFetching,
     isFetchingNextPage,
   } = useSuspenseInfiniteQuery({
-    queryKey: ['pokemons'],
+    queryKey: ["pokemons"],
     queryFn: getPoketmonListAll,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const { next } = lastPage;
       if (!next) return undefined;
-      return Number(new URL(next).searchParams.get('offset'));
+      return Number(new URL(next).searchParams.get("offset"));
     },
     staleTime: Infinity,
   });
