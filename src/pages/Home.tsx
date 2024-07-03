@@ -3,12 +3,10 @@ import { MainTypesLabel } from "@/components/mainTypesLabel";
 import { PokemonList } from "@/components/pokemonList";
 import { SearchBar } from "@/components/search/search-bar";
 import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
-import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
-  const { reset } = useQueryErrorResetBoundary();
   return (
     <>
       <Helmet>
@@ -20,7 +18,7 @@ const HomePage = () => {
         {/* 서치바 */}
         <SearchBar />
         {/* 리스트 */}
-        <ErrorBoundaryWrapper onReset={reset}>
+        <ErrorBoundaryWrapper>
           <Suspense fallback={<PokemonListUi />}>
             <PokemonList />
           </Suspense>
