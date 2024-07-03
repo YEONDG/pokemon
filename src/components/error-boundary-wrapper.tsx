@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useQueryErrorResetBoundary } from "node_modules/@tanstack/react-query/build/legacy";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 interface ErrorFallbackProps extends FallbackProps {}
@@ -18,21 +19,23 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
 
 interface ErrorBoundaryWrapperProps {
   children: React.ReactNode;
-  onReset: () => void;
 }
 
 const ErrorBoundaryWrapper: React.FC<ErrorBoundaryWrapperProps> = ({
   children,
-  onReset,
-}) => (
-  <ErrorBoundary
-    onReset={onReset}
-    fallbackRender={({ error, resetErrorBoundary }) => (
-      <ErrorFallback error={error} resetErrorBoundary={resetErrorBoundary} />
-    )}
-  >
-    {children}
-  </ErrorBoundary>
-);
+}) => {
+  const { reset } = useQueryErrorResetBoundary();
+
+  return (
+    <ErrorBoundary
+      onReset={reset}
+      fallbackRender={({ error, resetErrorBoundary }) => (
+        <ErrorFallback error={error} resetErrorBoundary={resetErrorBoundary} />
+      )}
+    >
+      {children}
+    </ErrorBoundary>
+  );
+};
 
 export default ErrorBoundaryWrapper;
