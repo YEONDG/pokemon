@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useQueryErrorResetBoundary } from "node_modules/@tanstack/react-query/build/legacy";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 interface ErrorFallbackProps extends FallbackProps {}
