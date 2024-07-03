@@ -10,7 +10,6 @@ import { PokemonTypeLabel } from "./pokemonTypeLabel";
 
 interface PokemonsProps {
   name: string;
-  url: string;
 }
 
 export const PokemonCard = memo(({ name }: PokemonsProps) => {
