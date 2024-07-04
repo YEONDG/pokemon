@@ -36,7 +36,7 @@ export const SearchBar = () => {
           setIsSearchActive(false);
         }
       }, 500),
-    [],
+    [setIsSearchActive],
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
