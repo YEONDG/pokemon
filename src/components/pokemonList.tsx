@@ -88,13 +88,7 @@ export const PokemonList = () => {
               ) : (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {post.map((Item) => {
-                    return (
-                      <PokemonCard
-                        key={Item?.name}
-                        name={Item?.name}
-                        url={Item?.url}
-                      />
-                    );
+                    return <PokemonCard key={Item?.name} name={Item?.name} />;
                   })}
                 </div>
               )}
