@@ -35,7 +35,7 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
     <>
       <Link
         to={`/pokemon/${pokemonInfo?.id}`}
-        className="flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border-2 shadow-md transition hover:bg-slate-400 hover:shadow-lg sm:h-72"
+        className="flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border-2 shadow-md transition hover:bg-slate-400 hover:shadow-lg dark:bg-slate-400 sm:h-72"
       >
         <div className="flex h-full w-full flex-col items-center justify-end sm:h-full">
           <div className="hidden h-full dark:text-slate-100 sm:flex">
