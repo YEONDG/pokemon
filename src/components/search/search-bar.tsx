@@ -1,6 +1,6 @@
 import pokemonData from "@/data/pokemon_data.json";
 import { debounce } from "lodash";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 
 import { PokemonCard } from "../pokemonCard";
 
@@ -13,24 +13,25 @@ export const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<PokemonName[]>([]);
 
-  const debouncedSearch = useCallback(
-    debounce((searchQuery: string) => {
-      if (searchQuery) {
-        const filteredResults: PokemonName[] = Object.entries(pokemonData)
-          .filter(
-            ([key, value]) =>
-              value.includes(searchQuery) ||
-              key.toLowerCase().includes(searchQuery),
-          )
-          .map(([key, value]) => ({
-            englishName: key,
-            koreanName: value,
-          }));
-        setResults(filteredResults);
-      } else {
-        setResults([]);
-      }
-    }, 300),
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((searchQuery: string) => {
+        if (searchQuery) {
+          const filteredResults: PokemonName[] = Object.entries(pokemonData)
+            .filter(
+              ([key, value]) =>
+                value.includes(searchQuery) ||
+                key.toLowerCase().includes(searchQuery),
+            )
+            .map(([key, value]) => ({
+              englishName: key,
+              koreanName: value,
+            }));
+          setResults(filteredResults);
+        } else {
+          setResults([]);
+        }
+      }, 300),
     [],
   );
 
