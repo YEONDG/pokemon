@@ -16,7 +16,7 @@ const HomePage = () => {
       <Helmet>
         <title>포켓몬 도감</title>
       </Helmet>
-      <div className="flex h-fit flex-col items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center">
         {/* 타입리스트 */}
         <MainTypesLabel />
         {/* 서치바 */}
