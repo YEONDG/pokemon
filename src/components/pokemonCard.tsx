@@ -53,7 +53,7 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
                   : 120
               }
               height={120}
-              className="object-contain"
+              className="mb-10 object-contain"
             />
           </div>
           <div className="text-3xl font-semibold dark:text-slate-100">
