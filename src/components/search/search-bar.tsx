@@ -13,11 +13,15 @@ export const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<PokemonName[]>([]);
 
-  const handleSearch = useCallback(
+  const debouncedSearch = useCallback(
     debounce((searchQuery: string) => {
       if (searchQuery) {
         const filteredResults: PokemonName[] = Object.entries(pokemonData)
-          .filter(([, value]) => value.includes(searchQuery))
+          .filter(
+            ([key, value]) =>
+              value.includes(searchQuery) ||
+              key.toLowerCase().includes(searchQuery),
+          )
           .map(([key, value]) => ({
             englishName: key,
             koreanName: value,
@@ -33,7 +37,7 @@ export const SearchBar = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchQuery = event.target.value.toLowerCase();
     setQuery(searchQuery);
-    handleSearch(searchQuery);
+    debouncedSearch(searchQuery);
   };
 
   return (
@@ -41,7 +45,7 @@ export const SearchBar = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-full rounded-lg border-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+        className="w-full rounded-lg border-2 border-gray-300 p-2 text-black focus:border-blue-500 focus:outline-none"
         value={query}
         onChange={handleChange}
       />
