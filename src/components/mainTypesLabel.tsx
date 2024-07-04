@@ -23,3 +23,5 @@ export const MainTypesLabel = () => {
     </>
   );
 };
+
+export default MainTypesLabel;

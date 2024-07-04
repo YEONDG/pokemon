@@ -99,3 +99,5 @@ export const PokemonList = () => {
     </>
   );
 };
+
+export default PokemonList;

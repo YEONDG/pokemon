@@ -1,10 +1,14 @@
 import ErrorBoundaryWrapper from "@/components/error-boundary-wrapper";
-import { MainTypesLabel } from "@/components/mainTypesLabel";
-import { PokemonList } from "@/components/pokemonList";
-import { SearchBar } from "@/components/search/search-bar";
+// import { MainTypesLabel } from "@/components/mainTypesLabel";
+// import { PokemonList } from "@/components/pokemonList";
+// import { SearchBar } from "@/components/search/search-bar";
 import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
+
+const PokemonList = lazy(() => import("@/components/pokemonList"));
+const MainTypesLabel = lazy(() => import("@/components/mainTypesLabel"));
+const SearchBar = lazy(() => import("@/components/search/search-bar"));
 
 const HomePage = () => {
   return (
