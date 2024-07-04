@@ -2,7 +2,7 @@
 import { useSuspenseInfinitePoke } from "@/hooks/useSuspenseInfinitePoke";
 import { useStore } from "@/store/store";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { PokemonCard } from "./pokemonCard";
 
@@ -11,7 +11,6 @@ const ITEMS_PER_ROW = 4;
 export const PokemonList = () => {
   const isSearchActive = useStore((state) => state.isSearchActive);
   const listRef = useRef<HTMLDivElement | null>(null);
-  const [estimateSize, setEstimateSize] = useState<number>(600);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useSuspenseInfinitePoke();
@@ -22,28 +21,10 @@ export const PokemonList = () => {
     count: hasNextPage
       ? allRows.length / ITEMS_PER_ROW + 1
       : allRows.length / ITEMS_PER_ROW,
-    estimateSize: () => estimateSize,
+    estimateSize: () => 300,
     overscan: 5,
     scrollMargin: listRef.current?.offsetTop ?? 0,
   });
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 640) {
-        setEstimateSize(300);
-      } else {
-        setEstimateSize(600);
-      }
-    };
-
-    // 초기 사이즈 설정
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
@@ -111,7 +92,7 @@ export const PokemonList = () => {
                   "로딩할 항목이 더 이상 없습니다."
                 )
               ) : (
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <div className="grid grid-cols-4 gap-2">
                   {post.map((Item) => {
                     return <PokemonCard key={Item?.name} name={Item?.name} />;
                   })}

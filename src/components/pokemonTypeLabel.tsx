@@ -15,7 +15,9 @@ export const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
     <div
       className={`flex w-full items-center justify-center rounded-md ${typeBgColor[typeName]}`}
     >
-      <div className="text-xl font-bold text-white">{translatedTypeName}</div>
+      <div className="text-center text-xl font-bold text-white">
+        {translatedTypeName}
+      </div>
     </div>
   );
 };

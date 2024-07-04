@@ -41,7 +41,7 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
           <div className="hidden h-full dark:text-slate-100 sm:flex">
             {pokemonInfo?.id} {pokemonSpeciesInfo?.name}
           </div>
-          <div className="flex h-24 w-full items-center justify-center sm:h-48">
+          <div className="flex h-full w-full items-center justify-center">
             <LazyLoadImage
               alt={pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : ""}
               src={imgSrc}
@@ -49,17 +49,17 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
                 pokemonInfo?.sprites?.versions?.["generation-v"]?.[
                   "black-white"
                 ]?.animated?.front_default
-                  ? 80
-                  : 120
+                  ? 120
+                  : 150
               }
               height={120}
-              className="mb-10 object-contain"
+              className="object-contain"
             />
           </div>
-          <div className="text-3xl font-semibold dark:text-slate-100">
+          <div className="font-semi bold text-lg dark:text-slate-100 sm:text-3xl">
             {pokemonSpeciesInfo?.names[2].name}
           </div>
-          <div className="flex w-full gap-2 p-2">
+          <div className="flex w-full flex-wrap gap-2 p-1 sm:flex-nowrap">
             {pokemonInfo?.types?.map((type) => (
               <PokemonTypeLabel key={type.slot} types={type.type} />
             ))}
