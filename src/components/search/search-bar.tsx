@@ -1,4 +1,5 @@
 import pokemonData from "@/data/pokemon_data.json";
+import { useStore } from "@/store/store";
 import debounce from "lodash/debounce";
 import { ChangeEvent, useMemo, useState } from "react";
 
@@ -12,6 +13,7 @@ type PokemonName = {
 export const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<PokemonName[]>([]);
+  const setIsSearchActive = useStore((state) => state.setIsSearchActive);
 
   const debouncedSearch = useMemo(
     () =>
@@ -28,10 +30,12 @@ export const SearchBar = () => {
               koreanName: value,
             }));
           setResults(filteredResults);
+          setIsSearchActive(true);
         } else {
           setResults([]);
+          setIsSearchActive(false);
         }
-      }, 300),
+      }, 500),
     [],
   );
 
@@ -42,7 +46,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex h-full w-full flex-col gap-4">
       <input
         type="text"
         placeholder="Search..."
