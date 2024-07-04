@@ -1,5 +1,5 @@
 import pokemonData from "@/data/pokemon_data.json";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { ChangeEvent, useMemo, useState } from "react";
 
 import { PokemonCard } from "../pokemonCard";
