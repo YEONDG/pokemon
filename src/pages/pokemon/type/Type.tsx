@@ -25,17 +25,17 @@ const PokemonTypePage = () => {
     <>
       <section className="w-full">
         <header
-          className={`relative mx-10 mt-5 flex items-center justify-center rounded-xl border-2 p-5 text-5xl ${typeBgColor[pokemonType]} text-white`}
+          className={`relative mt-5 flex items-center justify-center rounded-xl border-2 p-5 text-5xl ${typeBgColor[pokemonType]} text-white`}
         >
           <h2>{typeConverter[pokemonType]}</h2>
-          <div className="absolute bottom-0 right-10 text-xl">
+          <div className="absolute bottom-0 right-10 text-lg">
             {pokemonCount} 마리
           </div>
         </header>
         {isLoading ? (
           <PokemonListUi />
         ) : (
-          <div className="grid w-full grid-cols-2 gap-4 p-10 sm:grid-cols-2 md:grid-cols-4">
+          <div className="grid w-full grid-cols-2 gap-4 pt-5 sm:grid-cols-2 md:grid-cols-4">
             {pokemonTypeList?.pokemon?.map((item) => (
               <PokemonCard
                 key={item?.pokemon?.name}
