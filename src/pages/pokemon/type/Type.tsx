@@ -40,7 +40,6 @@ const PokemonTypePage = () => {
               <PokemonCard
                 key={item?.pokemon?.name}
                 name={item?.pokemon?.name}
-                url={item?.pokemon?.url}
               />
             ))}
           </div>
