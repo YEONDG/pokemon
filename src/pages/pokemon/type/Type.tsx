@@ -1,6 +1,6 @@
 import { getPokemonTypeWithName } from "@/apis/pokemon/pokemon";
-import { PokemonCard } from "@/components/pokemonCard";
-import { PokemonListUi } from "@/components/skeleton/pokemonListUi";
+import { PokemonCard } from "@/components/pokemon-card";
+import { PokemonListSkeleton } from "@/components/skeleton/pokemon-list-skeleton";
 import { PokemonTypeList } from "@/types";
 import { typeBgColor } from "@/utils/typeColor";
 import { typeConverter } from "@/utils/typeConverter";
@@ -33,7 +33,7 @@ const PokemonTypePage = () => {
           </div>
         </header>
         {isLoading ? (
-          <PokemonListUi />
+          <PokemonListSkeleton />
         ) : (
           <div className="grid w-full grid-cols-2 gap-4 pt-5 sm:grid-cols-2 md:grid-cols-4">
             {pokemonTypeList?.pokemon?.map((item) => (

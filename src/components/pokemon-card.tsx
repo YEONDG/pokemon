@@ -6,7 +6,7 @@ import { memo } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
-import { PokemonTypeLabel } from "./pokemonTypeLabel";
+import { PokemonTypeLabel } from "./pokemon-type-label";
 
 interface PokemonsProps {
   name: string;

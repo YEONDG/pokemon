@@ -1,4 +1,4 @@
-import { SkeletonLoader } from "@/components/skeleton/SkeletonLoader";
+import { SkeletonLoader } from "@/components/skeleton/skeleton-loader";
 
 export const ImageVersionsContainerSkeleton = () => {
   return (

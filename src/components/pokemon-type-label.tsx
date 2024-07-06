@@ -3,11 +3,11 @@ import { typeBgColor } from "@/utils/typeColor";
 import { typeConverter } from "@/utils/typeConverter";
 import React from "react";
 
-interface typeLabelProps {
+interface TypeLabelProps {
   types: PokemonBasic;
 }
 
-export const PokemonTypeLabel: React.FC<typeLabelProps> = ({ types }) => {
+export const PokemonTypeLabel: React.FC<TypeLabelProps> = ({ types }) => {
   const typeName = types.name;
   const translatedTypeName = typeConverter[typeName];
 

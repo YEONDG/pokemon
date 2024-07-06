@@ -4,7 +4,7 @@ import { useStore } from "@/store/store";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { useEffect, useRef } from "react";
 
-import { PokemonCard } from "./pokemonCard";
+import { PokemonCard } from "./pokemon-card";
 
 const ITEMS_PER_ROW = 4;
 

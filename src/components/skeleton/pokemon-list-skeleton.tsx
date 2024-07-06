@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const PokemonListUi = () => {
+export const PokemonListSkeleton = () => {
   const boxCount = 8;
   return (
     <>

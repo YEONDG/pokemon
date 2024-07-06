@@ -20,7 +20,7 @@ export const VersionImgSprites: FC<VersionImgSpritesProps> = ({
         <div className="flex flex-wrap items-center justify-center">
           <Img src={sprites?.front_default} alt="front_default" />
         </div>
-        <div className="">{title}</div>
+        <div>{title}</div>
       </div>
     </>
   );

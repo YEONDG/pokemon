@@ -1,4 +1,4 @@
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import { ProgressBar } from "@/components/ui/progress-bar";
 import { PokemonDetailType } from "@/types";
 import { FC } from "react";
 

@@ -1,4 +1,4 @@
-import { ImageDefaultContainerSkeleton } from "@/components/skeleton/ImageDefaultContainerSkeleton";
+import { ImageDefaultContainerSkeleton } from "@/components/skeleton/image-default-container-skeleton";
 import { Img } from "@/components/ui/Img";
 import { PokemonImgType } from "@/types";
 import { FC } from "react";

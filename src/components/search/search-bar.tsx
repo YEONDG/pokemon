@@ -3,7 +3,7 @@ import { useStore } from "@/store/store";
 import debounce from "lodash/debounce";
 import { ChangeEvent, useMemo, useState } from "react";
 
-import { PokemonCard } from "../pokemonCard";
+import { PokemonCard } from "../pokemon-card";
 
 type PokemonName = {
   englishName: string;
