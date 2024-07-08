@@ -10,7 +10,7 @@ const Root = () => {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <div className="h-full dark:bg-black">
           <NavBar />
-          <main className="container mx-auto h-full pt-20">
+          <main className="mx-auto h-full max-w-7xl pt-20">
             <Outlet />
             <Analytics />
           </main>

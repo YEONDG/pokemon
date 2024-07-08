@@ -7,13 +7,13 @@ export const MainTypesLabel = () => {
 
   return (
     <>
-      <section className="my-10 px-2">
-        <div className="flex max-w-3xl flex-wrap gap-2 text-lg font-bold text-white">
+      <section className="my-5 px-2">
+        <div className="flex max-w-3xl flex-wrap justify-center gap-2 text-lg font-bold text-white">
           {data.map((type) => (
             <Link
               to={`pokemon/type/${type}`}
               key={type}
-              className={`${typeBgColor[type]} rounded-xl px-4`}
+              className={`${typeBgColor[type]} w-24 rounded-xl px-4 text-center`}
             >
               {typeConverter[type]}
             </Link>

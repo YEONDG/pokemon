@@ -45,3 +45,5 @@ export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
     </div>
   );
 };
+
+export default DefalutInfo;
