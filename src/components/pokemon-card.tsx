@@ -38,10 +38,11 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
         className="flex h-72 w-full flex-col items-center justify-center overflow-hidden rounded-lg border-2 shadow-md transition hover:bg-slate-400 hover:shadow-lg dark:bg-slate-400"
       >
         <div className="flex h-full w-full flex-col items-center justify-end sm:h-full">
-          <div className="hidden h-full dark:text-slate-100 sm:flex">
-            {pokemonInfo?.id} {pokemonSpeciesInfo?.name}
+          <div className="hidden w-full px-2 dark:text-slate-100 sm:flex sm:justify-between">
+            <div>{pokemonInfo?.id}</div>
+            <div>{pokemonSpeciesInfo?.name}</div>
           </div>
-          <div className="flex h-full w-full items-center justify-center">
+          <div className="flex h-44 w-40 items-center justify-center">
             <LazyLoadImage
               alt={pokemonSpeciesInfo ? pokemonSpeciesInfo?.names[2].name : ""}
               src={imgSrc}
@@ -53,10 +54,10 @@ export const PokemonCard = memo(({ name }: PokemonsProps) => {
                   : 150
               }
               height={120}
-              className="object-contain"
+              className="fixed-size object-cover"
             />
           </div>
-          <div className="font-semi bold text-lg dark:text-slate-100 sm:text-3xl">
+          <div className="font-semi bold h-10 text-lg dark:text-slate-100 sm:text-3xl">
             {pokemonSpeciesInfo?.names[2].name}
           </div>
           <div className="flex w-full flex-wrap gap-2 p-1 sm:flex-nowrap">

@@ -1,7 +1,7 @@
 import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
-import { DefalutInfo } from "@/components/detail/defalut-info";
-import { ImageDefaultContainer } from "@/components/detail/image-default-container";
-import { ImageVersionsContainer } from "@/components/detail/Image-versions-container";
+// import { DefalutInfo } from "@/components/detail/defalut-info";
+// import { ImageDefaultContainer } from "@/components/detail/image-default-container";
+// import { ImageVersionsContainer } from "@/components/detail/Image-versions-container";
 import { PokemonTypeLabel } from "@/components/pokemon-type-label";
 import { Img } from "@/components/ui/Img";
 import useScrollToTop from "@/hooks/useScrollToTop";
@@ -9,8 +9,18 @@ import { PokemonDetailType, PokemonSpecies } from "@/types";
 import { pokemonImgSrc } from "@/utils/path";
 import { typeBgColor } from "@/utils/typeColor";
 import { useQuery } from "@tanstack/react-query";
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
+
+// Lazy load components
+const DefaultInfo = lazy(() => import("@/components/detail/default-info"));
+const ImageDefaultContainer = lazy(
+  () => import("@/components/detail/image-default-container"),
+);
+const ImageVersionsContainer = lazy(
+  () => import("@/components/detail/Image-versions-container"),
+);
 
 const PokemonDetailPage = () => {
   useScrollToTop();
@@ -68,13 +78,17 @@ const PokemonDetailPage = () => {
               ))}
             </div>
           </section>
-          <section className="w-full">
-            <DefalutInfo pokemonInfo={pokemonInfo} />
-          </section>
-          <section className="w-full">
-            <ImageDefaultContainer sprites={pokemonInfo?.sprites} />
-            <ImageVersionsContainer versions={pokemonInfo?.sprites?.versions} />
-          </section>
+          <Suspense fallback={<div>Loading...</div>}>
+            <section className="w-full">
+              <DefaultInfo pokemonInfo={pokemonInfo} />
+            </section>
+            <section className="w-full">
+              <ImageDefaultContainer sprites={pokemonInfo?.sprites} />
+              <ImageVersionsContainer
+                versions={pokemonInfo?.sprites?.versions}
+              />
+            </section>
+          </Suspense>
         </main>
       </div>
     </>

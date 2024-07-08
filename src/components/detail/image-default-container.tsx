@@ -41,3 +41,5 @@ export const ImageDefaultContainer: FC<ImageDefaultContainerProps> = ({
     </>
   );
 };
+
+export default ImageDefaultContainer;

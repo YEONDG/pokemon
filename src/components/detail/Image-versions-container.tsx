@@ -99,3 +99,5 @@ export const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
     </div>
   );
 };
+
+export default ImageVersionsContainer;
