@@ -1,15 +1,14 @@
 import { ImageVersionsContainerSkeleton } from "@/components/skeleton/image-versions-container-skeleton";
 import { PokemonVersionsGeneration } from "@/types";
-import { FC } from "react";
 
 import { VersionImgSprites } from "./version-img-sprites";
 
 interface ImageVersionsContainerProps {
   versions?: PokemonVersionsGeneration;
 }
-export const ImageVersionsContainer: FC<ImageVersionsContainerProps> = ({
+export const ImageVersionsContainer = ({
   versions,
-}) => {
+}: ImageVersionsContainerProps) => {
   if (!versions) {
     return <ImageVersionsContainerSkeleton />;
   }

@@ -1,10 +1,8 @@
-import { FC } from "react";
-
 interface ProgressBarProps {
   value?: number;
 }
 
-export const ProgressBar: FC<ProgressBarProps> = ({ value = 0 }) => {
+export const ProgressBar = ({ value = 0 }: ProgressBarProps) => {
   const width = (value / 300) * 100;
   return (
     <div className="h-4 w-full rounded-full bg-slate-200">

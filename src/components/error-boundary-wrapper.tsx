@@ -4,10 +4,7 @@ import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 interface ErrorFallbackProps extends FallbackProps {}
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = ({
-  error,
-  resetErrorBoundary,
-}) => (
+const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => (
   <div className="flex h-screen flex-col items-center justify-center gap-10 dark:text-white">
     <p className="text-xl">네트워크 에러가 발생했습니다.</p>
     <pre className="text-sm text-red-500">{error.message}</pre>

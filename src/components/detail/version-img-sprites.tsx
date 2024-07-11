@@ -1,16 +1,15 @@
 import { Img } from "@/components/ui/Img";
 import { PokemonImgBasicFrontType, PokemonVersionsImgType } from "@/types";
-import { FC } from "react";
 
 interface VersionImgSpritesProps {
   title: string;
   sprites: PokemonVersionsImgType | PokemonImgBasicFrontType;
 }
 
-export const VersionImgSprites: FC<VersionImgSpritesProps> = ({
+export const VersionImgSprites = ({
   title,
   sprites,
-}) => {
+}: VersionImgSpritesProps) => {
   if (!sprites.front_default) {
     return;
   }

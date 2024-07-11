@@ -8,12 +8,7 @@ interface ImgProps {
   lazy?: boolean;
 }
 
-const ImgComponent: React.FC<ImgProps> = ({
-  src,
-  alt,
-  className = "",
-  lazy = true,
-}) => {
+const ImgComponent = ({ src, alt, className = "", lazy = true }: ImgProps) => {
   const { elementRef, isLoaded } = useIsImgLoaded(lazy);
   const imgClasses = `${className} ${isLoaded ? "" : "hidden"}`;
 

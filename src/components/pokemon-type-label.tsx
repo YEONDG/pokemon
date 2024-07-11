@@ -7,7 +7,7 @@ interface TypeLabelProps {
   types: PokemonBasic;
 }
 
-export const PokemonTypeLabel: React.FC<TypeLabelProps> = ({ types }) => {
+export const PokemonTypeLabel = ({ types }: TypeLabelProps) => {
   const typeName = types.name;
   const translatedTypeName = typeConverter[typeName];
 

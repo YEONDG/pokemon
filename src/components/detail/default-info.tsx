@@ -1,11 +1,16 @@
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { PokemonDetailType } from "@/types";
-import { FC } from "react";
 
 interface DefaultInfoProps {
   pokemonInfo?: PokemonDetailType;
 }
-const StatRow: FC<{ label: string; value?: number }> = ({ label, value }) => (
+
+interface StatRowProps {
+  label: string;
+  value?: number;
+}
+
+const StatRow = ({ label, value }: StatRowProps) => (
   <div className="mx-5 flex justify-between gap-5">
     <p className="w-1/6 dark:text-white">{label}</p>
     <p className="dark:text-white">{value ?? "???"}</p>
@@ -15,7 +20,7 @@ const StatRow: FC<{ label: string; value?: number }> = ({ label, value }) => (
   </div>
 );
 
-export const DefaultInfo: FC<DefaultInfoProps> = ({ pokemonInfo }) => {
+export const DefaultInfo = ({ pokemonInfo }: DefaultInfoProps) => {
   const stats = pokemonInfo?.stats ?? [];
   const height = pokemonInfo?.height ? pokemonInfo.height / 10 + "m" : "???";
   const weight = pokemonInfo?.weight ? pokemonInfo.weight / 10 + "kg" : "???";
