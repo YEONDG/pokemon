@@ -14,5 +14,5 @@ export const PokemonListSkeleton = () => {
 };
 
 const Box = () => {
-  return <Skeleton className="h-[300px] w-full" />;
+  return <Skeleton className="h-[300px] w-full animate-pulse rounded-md" />;
 };
