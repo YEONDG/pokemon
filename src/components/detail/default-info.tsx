@@ -2,7 +2,7 @@ import { ProgressBar } from "@/components/ui/progress-bar";
 import { PokemonDetailType } from "@/types";
 import { FC } from "react";
 
-interface DefalutInfoProps {
+interface DefaultInfoProps {
   pokemonInfo?: PokemonDetailType;
 }
 const StatRow: FC<{ label: string; value?: number }> = ({ label, value }) => (
@@ -15,7 +15,7 @@ const StatRow: FC<{ label: string; value?: number }> = ({ label, value }) => (
   </div>
 );
 
-export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
+export const DefaultInfo: FC<DefaultInfoProps> = ({ pokemonInfo }) => {
   const stats = pokemonInfo?.stats ?? [];
   const height = pokemonInfo?.height ? pokemonInfo.height / 10 + "m" : "???";
   const weight = pokemonInfo?.weight ? pokemonInfo.weight / 10 + "kg" : "???";
@@ -46,4 +46,4 @@ export const DefalutInfo: FC<DefalutInfoProps> = ({ pokemonInfo }) => {
   );
 };
 
-export default DefalutInfo;
+export default DefaultInfo;

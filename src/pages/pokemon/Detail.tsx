@@ -1,7 +1,4 @@
 import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
-// import { DefalutInfo } from "@/components/detail/defalut-info";
-// import { ImageDefaultContainer } from "@/components/detail/image-default-container";
-// import { ImageVersionsContainer } from "@/components/detail/Image-versions-container";
 import { PokemonTypeLabel } from "@/components/pokemon-type-label";
 import { Img } from "@/components/ui/Img";
 import useScrollToTop from "@/hooks/useScrollToTop";
