@@ -4,7 +4,7 @@ export const PokemonListSkeleton = () => {
   const boxCount = 8;
   return (
     <>
-      <div className="grid h-[800px] w-full grid-cols-2 pt-5 sm:grid-cols-4 sm:gap-2">
+      <div className="grid h-[700px] w-full grid-cols-2 gap-2 pt-5 sm:grid-cols-4">
         {Array.from({ length: boxCount }).map((_, index) => (
           <Box key={index} />
         ))}
