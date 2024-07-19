@@ -1,3 +1,7 @@
+export type PokemonJSONData = {
+  [key: string]: string;
+};
+
 export interface PokemonBasic {
   name: string;
   url: string;

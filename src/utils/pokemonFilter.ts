@@ -1,4 +1,6 @@
 import pokemonData from "@/data/pokemon_data.json";
+import { PokemonJSONData } from "@/types";
+import { choseongIncludes } from "es-hangul";
 
 type PokemonName = {
   englishName: string;
@@ -6,11 +8,17 @@ type PokemonName = {
 };
 
 export const filterPokemon = (searchQuery: string): PokemonName[] => {
-  return Object.entries(pokemonData)
-    .filter(
-      ([key, value]) =>
-        value.includes(searchQuery) || key.toLowerCase().includes(searchQuery),
-    )
+  const lowerCaseQuery = searchQuery.toLowerCase();
+
+  return Object.entries(pokemonData as PokemonJSONData)
+    .filter(([key, value]) => {
+      const lowerCaseKey = key.toLowerCase();
+      return (
+        value.includes(searchQuery) ||
+        choseongIncludes(value, searchQuery) ||
+        lowerCaseKey.includes(lowerCaseQuery)
+      );
+    })
     .map(([key, value]) => ({
       englishName: key,
       koreanName: value,
