@@ -15,11 +15,7 @@ const HomePage = () => {
       </Helmet>
       <div className="flex h-full flex-col items-center justify-center">
         {/* 타입리스트 */}
-        <ErrorBoundaryWrapper>
-          <Suspense fallback={<div>Loading Types...</div>}>
-            <MainTypesLabel />
-          </Suspense>
-        </ErrorBoundaryWrapper>
+        <MainTypesLabel />
         {/* 서치바 */}
         <SearchBar />
         {/* 리스트 */}
