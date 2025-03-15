@@ -8,7 +8,7 @@ interface PokemonImagesSectionProps {
   versions: PokemonVersionsGeneration | null;
 }
 
-export const PokemonImagesSection = ({
+const PokemonImagesSection = ({
   sprites,
   versions,
 }: PokemonImagesSectionProps) => (
@@ -17,3 +17,4 @@ export const PokemonImagesSection = ({
     <ImageVersionsContainer versions={versions || null} />
   </section>
 );
+export default PokemonImagesSection;

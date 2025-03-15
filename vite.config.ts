@@ -16,4 +16,32 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // 메인 프레임워크 청크
+          "react-vendor": [
+            "react",
+            "react-dom",
+            "react-router-dom",
+            "react-helmet-async",
+          ],
+
+          // 상태 관리 및 데이터 페칭 청크
+          "query-vendor": ["@tanstack/react-query"],
+
+          // 스타일 및 UI 라이브러리 청크
+          "ui-vendor": ["framer-motion", "lucide-react"],
+
+          // 포켓몬 컴포넌트 청크
+          "pokemon-components": [
+            "./src/components/detail/default-info.jsx",
+            "./src/components/detail/pokemon-image-section.jsx",
+            "./src/components/detail/pokemon-images-section.jsx",
+          ],
+        },
+      },
+    },
+  },
 });

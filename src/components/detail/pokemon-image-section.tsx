@@ -14,10 +14,7 @@ interface PokemonImageSectionProps {
     | null;
 }
 
-export const PokemonImageSection = ({
-  imgSrc,
-  types,
-}: PokemonImageSectionProps) => (
+const PokemonImageSection = ({ imgSrc, types }: PokemonImageSectionProps) => (
   <section className="flex h-64 w-72 flex-col items-center justify-end">
     <Img
       className="mb-10 h-32 w-72"
@@ -32,3 +29,4 @@ export const PokemonImageSection = ({
     </div>
   </section>
 );
+export default PokemonImageSection;

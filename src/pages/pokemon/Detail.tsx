@@ -1,15 +1,20 @@
 import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
-import DefaultInfo from "@/components/detail/default-info";
 import { DetailHeader } from "@/components/detail/detail-header";
-import { PokemonImageSection } from "@/components/detail/pokemon-image-section";
-import { PokemonImagesSection } from "@/components/detail/pokemon-images-section";
 import useScrollToTop from "@/hooks/useScrollToTop";
 import { PokemonDetailType, PokemonSpecies } from "@/types";
 import { pokemonImgSrc } from "@/utils/path";
 import { useQuery } from "@tanstack/react-query";
-import { Suspense, useMemo } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
+
+const DefaultInfo = lazy(() => import("@/components/detail/default-info"));
+const PokemonImageSection = lazy(
+  () => import("@/components/detail/pokemon-image-section"),
+);
+const PokemonImagesSection = lazy(
+  () => import("@/components/detail/pokemon-images-section"),
+);
 
 const PokemonDetailPage = () => {
   useScrollToTop();
@@ -58,14 +63,20 @@ const PokemonDetailPage = () => {
         <DetailHeader type={type} name={pokemonDisplayName} />
 
         <main className="mt-10 flex w-full flex-col items-center justify-center gap-5">
-          <PokemonImageSection
-            imgSrc={imgSrc}
-            types={pokemonInfo?.types || null}
-          />
+          <Suspense fallback={<LoadingFallback />}>
+            <PokemonImageSection
+              imgSrc={imgSrc}
+              types={pokemonInfo?.types || null}
+            />
+          </Suspense>
+
           <Suspense fallback={<LoadingFallback />}>
             <section className="w-full">
               <DefaultInfo pokemonInfo={pokemonInfo} />
             </section>
+          </Suspense>
+
+          <Suspense fallback={<LoadingFallback />}>
             <PokemonImagesSection
               sprites={pokemonInfo?.sprites || null}
               versions={pokemonInfo?.sprites?.versions || null}
