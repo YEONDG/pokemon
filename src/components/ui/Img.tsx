@@ -17,7 +17,7 @@ const ImgComponent = ({ src, alt, className = "", lazy = true }: ImgProps) => {
   return (
     <div
       ref={elementRef}
-      className={`flex h-24 w-24 items-center justify-center`}
+      className={`flex h-24 w-40 items-center justify-center`}
     >
       <img src={src} alt={alt} className={imgClasses} />
     </div>

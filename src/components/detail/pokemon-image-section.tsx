@@ -20,7 +20,7 @@ export const PokemonImageSection = ({
 }: PokemonImageSectionProps) => (
   <section className="flex h-64 w-72 flex-col items-center justify-end">
     <Img
-      className="mb-10 h-32 w-36"
+      className="mb-10 h-32 w-72"
       alt="포켓몬 이미지"
       lazy={true}
       src={imgSrc}
