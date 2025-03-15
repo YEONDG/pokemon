@@ -5,6 +5,7 @@ import {
   setLocalStorageItem,
 } from "@/utils/localStorage";
 import { filterPokemon } from "@/utils/pokemonFilter";
+import { AnimatePresence, motion } from "framer-motion";
 import debounce from "lodash/debounce";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
@@ -18,6 +19,30 @@ type PokemonName = {
 
 const SEARCH_QUERY_KEY = "searchQuery";
 const SEARCH_RESULTS_KEY = "searchResults";
+
+// 애니메이션 변수 정의
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 0, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 24,
+    },
+  },
+};
 
 export const SearchBar = () => {
   const [query, setQuery] = useState(() =>
@@ -74,25 +99,40 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col gap-4">
-      <div className="flex items-center justify-center gap-2">
+    <div className="flex h-full w-full flex-col gap-2">
+      <div className="flex items-center justify-start gap-2">
         <input
           type="text"
           placeholder="Search..."
-          className="w-1/2 rounded-lg border-2 border-gray-300 p-2 text-black focus:border-blue-500 focus:outline-none"
+          className="w-1/2 rounded-lg border-2 border-gray-500 p-2 text-black focus:border-blue-500 focus:outline-none"
           value={query}
           onChange={handleChange}
         />
         <Button onClick={handleSearchClick}>검색</Button>
         <Button onClick={handleClearClick}>전체목록</Button>
       </div>
-      <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {results.map((pokemon) => (
-          <li key={pokemon.englishName}>
-            <PokemonCard name={pokemon.englishName} />
-          </li>
-        ))}
-      </ul>
+
+      <AnimatePresence mode="wait">
+        {results.length > 0 ? (
+          <motion.ul
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+          >
+            {results.map((pokemon) => (
+              <motion.li
+                key={pokemon.englishName}
+                variants={item}
+                layout
+                exit={{ opacity: 0.2, transition: { duration: 0.2 } }}
+              >
+                <PokemonCard name={pokemon.englishName} />
+              </motion.li>
+            ))}
+          </motion.ul>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 };
