@@ -8,9 +8,9 @@ const Root = () => {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <div className="h-full dark:bg-black">
+        <div className="fixed-scrollbar h-full dark:bg-black">
           <NavBar />
-          <main className="mx-auto h-full max-w-7xl pt-20">
+          <main className="mx-auto h-full max-w-7xl pr-[calc(100vw-100%)] pt-20">
             <Outlet />
             <Analytics />
           </main>
