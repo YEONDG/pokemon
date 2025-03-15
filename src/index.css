@@ -9,6 +9,15 @@ body {
   height: 100%;
 }
 
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* .fixed-scrollbar {
+  margin-right: calc(-1 * (100vw - 100%));
+} */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
