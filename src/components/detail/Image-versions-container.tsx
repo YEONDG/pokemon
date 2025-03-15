@@ -4,7 +4,7 @@ import { PokemonVersionsGeneration } from "@/types";
 import { VersionImgSprites } from "./version-img-sprites";
 
 interface ImageVersionsContainerProps {
-  versions?: PokemonVersionsGeneration;
+  versions?: PokemonVersionsGeneration | null;
 }
 export const ImageVersionsContainer = ({
   versions,

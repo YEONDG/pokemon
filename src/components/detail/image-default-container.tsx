@@ -3,7 +3,7 @@ import { Img } from "@/components/ui/Img";
 import { PokemonImgType } from "@/types";
 
 interface ImageDefaultContainerProps {
-  sprites?: PokemonImgType;
+  sprites?: PokemonImgType | null;
 }
 
 export const ImageDefaultContainer = ({
