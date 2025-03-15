@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 
 export const MainTypesLabel = () => {
   return (
-    <>
-      <section className="my-5 px-2">
-        <div className="flex max-w-3xl flex-wrap justify-center gap-2 text-lg font-bold text-white">
+    <section className="my-4">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-wrap justify-start gap-3">
           {typeList.map((type) => (
             <Link
               to={`pokemon/type/${type}`}
               key={type}
-              className={`${typeBgColor[type]} w-24 rounded-xl px-4 text-center`}
+              className={`${typeBgColor[type]} flex h-14 w-28 items-center justify-center rounded-lg px-3 text-center font-bold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg sm:rounded-xl`}
             >
-              {typeConverter[type]}
+              <div className="flex flex-col items-center">
+                <span className="text-xs opacity-80">{type.toUpperCase()}</span>
+                <span className="mt-1 text-lg">{typeConverter[type]}</span>
+              </div>
             </Link>
           ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
