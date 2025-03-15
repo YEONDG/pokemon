@@ -100,11 +100,11 @@ export const SearchBar = () => {
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-start gap-2">
         <input
           type="text"
           placeholder="Search..."
-          className="w-1/2 rounded-lg border-2 border-gray-300 p-2 text-black focus:border-blue-500 focus:outline-none"
+          className="w-1/2 rounded-lg border-2 border-gray-500 p-2 text-black focus:border-blue-500 focus:outline-none"
           value={query}
           onChange={handleChange}
         />
