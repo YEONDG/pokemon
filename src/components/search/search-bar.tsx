@@ -10,7 +10,7 @@ import debounce from "lodash/debounce";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
 import { PokemonCard } from "../pokemon-card";
-import { Button } from "../ui/button";
+import { SearchButtons } from "./search-btns";
 
 type PokemonName = {
   englishName: string;
@@ -89,14 +89,14 @@ export const SearchBar = () => {
     debouncedSearch(searchQuery);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
     debouncedSearch(query);
-  };
+  }, [debouncedSearch, query]);
 
-  const handleClearClick = () => {
+  const handleClearClick = useCallback(() => {
     setQuery("");
     clearSearchResults();
-  };
+  }, [clearSearchResults]);
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
@@ -108,12 +108,14 @@ export const SearchBar = () => {
           value={query}
           onChange={handleChange}
         />
-        <Button onClick={handleSearchClick}>검색</Button>
-        <Button onClick={handleClearClick}>전체목록</Button>
+        <SearchButtons
+          onSearch={handleSearchClick}
+          onClear={handleClearClick}
+        />
       </div>
 
       <AnimatePresence mode="wait">
-        {results.length > 0 ? (
+        {results.length > 0 && (
           <motion.ul
             variants={container}
             initial="hidden"
@@ -131,7 +133,7 @@ export const SearchBar = () => {
               </motion.li>
             ))}
           </motion.ul>
-        ) : null}
+        )}
       </AnimatePresence>
     </div>
   );
