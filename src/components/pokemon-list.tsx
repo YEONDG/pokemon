@@ -48,7 +48,7 @@ export const PokemonList = () => {
   ]);
 
   if (isSearchActive) {
-    return null;
+    return <div className="h-screen"></div>;
   }
 
   return (
