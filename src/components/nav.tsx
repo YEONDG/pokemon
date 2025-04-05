@@ -8,8 +8,8 @@ export const NavBar = () => {
       <div className="container mx-auto">
         <div className="flex justify-between px-6">
           <Link to={"/"} className="m-5 flex text-3xl dark:text-slate-100">
-            <img src="/poke.svg" width={30} height={30} alt="포켓몬 아이콘" />{" "}
-            포켓몬도감
+            <img src="/poke.svg" width={30} height={30} alt="포켓몬 아이콘" />
+            <span className="hidden md:block">포켓몬도감</span>
           </Link>
 
           <div className="m-5 text-3xl">
