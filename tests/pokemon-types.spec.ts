@@ -98,8 +98,9 @@ test.describe("특정 포켓몬 검색 및 상세 정보 테스트", () => {
         await expect(page.locator("text=기본 스탯")).toBeVisible();
       } catch (error) {
         console.log(
-          `${pokemon.name} 테스트 중 오류 발생. 대체 방법으로 시도합니다.`,
+          `${pokemon.name} 테스트 중 오류 발생. 대체 방법으로 시도합니다.`, // 제거
         );
+
 
         // 해당 포켓몬이 메인 페이지에 있는지 확인하고 직접 클릭 시도
         await page.goto("http://localhost:5173/");
