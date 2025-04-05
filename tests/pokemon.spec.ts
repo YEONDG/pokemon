@@ -125,7 +125,8 @@ test.describe("포켓몬 도감 웹사이트 테스트", () => {
     // 다크 모드와 라이트 모드 전환 확인
     expect(initialTheme).not.toEqual(newTheme);
 
-    await page.waitForTimeout(500); // 테마 변경 후 페이지 로드 대기
+    // await page.waitForTimeout(500); // 테마 변경 후 페이지 로드 대기
+    await page.waitForSelector('html[class*="dark"], html:not([class*="dark"])'); // 테마 변경 후 페이지 로드 대기
 
     // 다시 원래 테마로 변경
     // 테마 토글 버튼 클릭하여 메뉴 열기
