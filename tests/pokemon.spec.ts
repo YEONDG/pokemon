@@ -90,7 +90,7 @@ test.describe("포켓몬 도감 웹사이트 테스트", () => {
 
     // 피카츄 상세 정보가 표시되는지 확인
     await expect(page.locator("text=피카츄")).toBeVisible();
-    await expect(page.locator("text=전기")).toBeVisible();
+    await expect(page.locator("text=전기").first()).toBeVisible();
 
     // 기본 정보 섹션이 표시되는지 확인
     await expect(page.locator("text=기본 정보")).toBeVisible();
