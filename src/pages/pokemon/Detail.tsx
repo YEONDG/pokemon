@@ -9,31 +9,42 @@ import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
 const DefaultInfo = lazy(() => import("@/components/detail/default-info"));
-const PokemonImageSection = lazy(
-  () => import("@/components/detail/pokemon-image-section"),
+const PokemonMainImage = lazy(
+  () => import("@/components/detail/pokemon-main-image"),
 );
-const PokemonImagesSection = lazy(
-  () => import("@/components/detail/pokemon-images-section"),
+const PokemonImageGallery = lazy(
+  () => import("@/components/detail/pokemon-image-gallery"),
+);
+
+const LoadingFallback = () => (
+  <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+    <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></div>
+    <p className="mt-2">로딩 중...</p>
+  </div>
 );
 
 const PokemonDetailPage = () => {
   useScrollToTop();
 
-  const { name: Id } = useParams();
+  const { name: id } = useParams();
 
-  const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
-    queryKey: ["pokemonInfo", `${Id}`],
-    queryFn: () => getPokemonInfoWithId(Id),
-    enabled: !!Id,
+  const { data: pokemonInfo, isLoading: isPokemonLoading } = useQuery<
+    PokemonDetailType,
+    Error
+  >({
+    queryKey: ["pokemonInfo", id],
+    queryFn: () => getPokemonInfoWithId(id),
+    enabled: !!id,
     staleTime: Infinity,
   });
 
-  const pokemonName = pokemonInfo?.species?.name;
-
-  const { data: pokemonSpeciesInfo } = useQuery<PokemonSpecies, Error>({
-    queryKey: ["pokemonSpec", `${pokemonName}`],
-    queryFn: () => getPokemonSpec(pokemonName),
-    enabled: !!pokemonName,
+  const { data: pokemonSpeciesInfo, isLoading: isSpeciesLoading } = useQuery<
+    PokemonSpecies,
+    Error
+  >({
+    queryKey: ["pokemonSpec", pokemonInfo?.species?.name],
+    queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
+    enabled: !!pokemonInfo?.species?.name,
     staleTime: Infinity,
   });
 
@@ -48,36 +59,39 @@ const PokemonDetailPage = () => {
   );
 
   const pokemonDisplayName = pokemonSpeciesInfo?.names[2].name || null;
+  const isLoading = isPokemonLoading || isSpeciesLoading;
 
-  const LoadingFallback = () => (
-    <div className="p-4 text-center">로딩 중...</div>
-  );
+  if (isLoading) {
+    return <LoadingFallback />;
+  }
 
   return (
     <>
       <Helmet>
-        <title>{pokemonDisplayName || "포켓몬 정보"}</title>
+        <title>{pokemonDisplayName}</title>
+        <meta
+          name="description"
+          content={`${pokemonDisplayName}의 상세 정보 페이지입니다.`}
+        />
       </Helmet>
 
       <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center">
         <DetailHeader type={type} name={pokemonDisplayName} />
 
-        <main className="mt-10 flex w-full flex-col items-center justify-center gap-5">
+        <main className="flex w-full flex-col items-center justify-center gap-5">
           <Suspense fallback={<LoadingFallback />}>
-            <PokemonImageSection
+            <PokemonMainImage
               imgSrc={imgSrc}
               types={pokemonInfo?.types || null}
             />
           </Suspense>
 
           <Suspense fallback={<LoadingFallback />}>
-            <section className="w-full">
-              <DefaultInfo pokemonInfo={pokemonInfo} />
-            </section>
+            <DefaultInfo pokemonInfo={pokemonInfo} />
           </Suspense>
 
           <Suspense fallback={<LoadingFallback />}>
-            <PokemonImagesSection
+            <PokemonImageGallery
               sprites={pokemonInfo?.sprites || null}
               versions={pokemonInfo?.sprites?.versions || null}
             />

@@ -1,7 +1,7 @@
 import { PokemonTypeLabel } from "../home/card/pokemon-type-label";
 import { Img } from "../ui/Img";
 
-interface PokemonImageSectionProps {
+interface PokemonMainImageProps {
   imgSrc: string | null;
   types:
     | {
@@ -14,7 +14,7 @@ interface PokemonImageSectionProps {
     | null;
 }
 
-const PokemonImageSection = ({ imgSrc, types }: PokemonImageSectionProps) => (
+const PokemonMainImage = ({ imgSrc, types }: PokemonMainImageProps) => (
   <section className="flex h-64 w-72 flex-col items-center justify-end">
     <Img
       className="mb-10 h-32 w-72"
@@ -29,4 +29,4 @@ const PokemonImageSection = ({ imgSrc, types }: PokemonImageSectionProps) => (
     </div>
   </section>
 );
-export default PokemonImageSection;
+export default PokemonMainImage;

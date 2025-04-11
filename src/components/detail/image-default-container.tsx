@@ -15,10 +15,10 @@ export const ImageDefaultContainer = ({
 
   return (
     <>
-      <div className="my-5 flex flex-col items-center justify-center">
-        <div className="my-5 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
+      <div className="flex flex-col items-center justify-center">
+        <h3 className="my-2 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
           기본 이미지
-        </div>
+        </h3>
         <div className="flex flex-wrap justify-center">
           <Img src={sprites?.front_default} alt="front_default" />
 

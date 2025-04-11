@@ -14,10 +14,10 @@ export const ImageVersionsContainer = ({
   }
 
   return (
-    <div className="my-5 flex flex-col items-center justify-center">
-      <div className="my-5 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
+    <div className="flex flex-col items-center justify-center">
+      <h3 className="my-2 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
         버전별 이미지
-      </div>
+      </h3>
       <div className="flex flex-col items-center justify-center gap-7">
         <div className="flex gap-4">
           <VersionImgSprites
