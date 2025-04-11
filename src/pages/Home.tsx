@@ -4,7 +4,7 @@ import { PokemonListSkeleton } from "@/components/skeleton/pokemon-list-skeleton
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 
-const PokemonList = lazy(() => import("@/components/pokemon-list"));
+const PokemonList = lazy(() => import("@/components/home/pokemon-list"));
 const PokemonTypeNav = lazy(
   () => import("@/components/home/type-nav/pokemon-type-nav"),
 );

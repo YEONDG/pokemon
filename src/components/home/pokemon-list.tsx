@@ -4,7 +4,7 @@ import { useStore } from "@/store/store";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { useEffect, useRef } from "react";
 
-import { PokemonCard } from "./pokemon-card";
+import { PokemonCard } from "./card/pokemon-card";
 
 const ITEMS_PER_ROW = 4;
 
@@ -84,7 +84,6 @@ export const PokemonList = () => {
                 }px)`,
               }}
             >
-              {" "}
               {isLoaderRow ? (
                 hasNextPage ? (
                   "로딩중 입니다.."

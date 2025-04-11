@@ -1,5 +1,5 @@
 import { getPokemonTypeWithName } from "@/apis/pokemon/pokemon";
-import { PokemonCard } from "@/components/pokemon-card";
+import { PokemonCard } from "@/components/home/card/pokemon-card";
 import { PokemonListSkeleton } from "@/components/skeleton/pokemon-list-skeleton";
 import { PokemonTypeList } from "@/types";
 import { typeBgColor } from "@/utils/typeColor";

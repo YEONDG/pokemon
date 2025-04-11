@@ -1,4 +1,4 @@
-import { PokemonCard } from "@/components/pokemon-card";
+import { PokemonCard } from "@/components/home/card/pokemon-card";
 import { ANIMATIONS } from "@/constants/animations";
 import { AnimatePresence, motion } from "framer-motion";
 

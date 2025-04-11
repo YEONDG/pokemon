@@ -1,4 +1,4 @@
-import { PokemonTypeLabel } from "../pokemon-type-label";
+import { PokemonTypeLabel } from "../home/card/pokemon-type-label";
 import { Img } from "../ui/Img";
 
 interface PokemonImageSectionProps {
