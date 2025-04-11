@@ -37,8 +37,8 @@ export default defineConfig({
           // 포켓몬 컴포넌트 청크
           "pokemon-components": [
             "./src/components/detail/default-info.jsx",
-            "./src/components/detail/pokemon-image-section.jsx",
-            "./src/components/detail/pokemon-images-section.jsx",
+            "./src/components/detail/pokemon-main-image.jsx",
+            "./src/components/detail/pokemon-image-gallery.jsx",
           ],
         },
       },
