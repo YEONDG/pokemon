@@ -2,7 +2,27 @@ interface LabelConvertedType {
   [key: string]: string;
 }
 
-export const typeList: string[] = [
+export type PokemonType =
+  | "normal"
+  | "fighting"
+  | "flying"
+  | "poison"
+  | "ground"
+  | "rock"
+  | "bug"
+  | "ghost"
+  | "steel"
+  | "fire"
+  | "water"
+  | "grass"
+  | "electric"
+  | "psychic"
+  | "ice"
+  | "dragon"
+  | "dark"
+  | "fairy";
+
+export const typeList: PokemonType[] = [
   "normal",
   "fighting",
   "flying",

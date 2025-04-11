@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import debounce from "lodash/debounce";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
-import { PokemonCard } from "../pokemon-card";
+import { PokemonCard } from "../../pokemon-card";
 import { SearchButtons } from "./search-btns";
 
 type PokemonName = {

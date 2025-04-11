@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export const SearchButtons = memo(
   ({ onSearch, onClear }: { onSearch: () => void; onClear: () => void }) => {
