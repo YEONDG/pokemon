@@ -5,6 +5,7 @@ import { PokemonTypeList } from "@/types";
 import { typeBgColor } from "@/utils/typeColor";
 import { typeConverter } from "@/utils/typeConverter";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
 const PokemonTypePage = () => {
@@ -23,6 +24,13 @@ const PokemonTypePage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{typeConverter[pokemonType]} 타입 포켓몬</title>
+        <meta
+          name="description"
+          content={`${typeConverter[pokemonType]}포켓몬의 페이지입니다.`}
+        />
+      </Helmet>
       <section className="w-full">
         <header
           className={`relative mt-5 flex items-center justify-center rounded-xl border-2 p-5 text-5xl ${typeBgColor[pokemonType]} text-white`}

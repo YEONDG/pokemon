@@ -14,6 +14,10 @@ const HomePage = () => {
     <>
       <Helmet>
         <title>포켓몬 도감</title>
+        <meta
+          name="description"
+          content="포켓몬 정보를 제공하는 웹사이트입니다. 다양한 포켓몬의 타입, 능력치, 진화 정보 등을 확인할 수 있습니다."
+        />
       </Helmet>
       <div className="flex h-full flex-col items-center justify-center">
         {/* 타입리스트 */}
