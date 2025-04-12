@@ -32,7 +32,7 @@ export default defineConfig({
           "query-vendor": ["@tanstack/react-query"],
 
           // 스타일 및 UI 라이브러리 청크
-          "ui-vendor": ["framer-motion", "lucide-react"],
+          "ui-vendor": ["motion", "lucide-react"],
 
           // 포켓몬 컴포넌트 청크
           "pokemon-components": [
