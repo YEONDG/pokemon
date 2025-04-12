@@ -7,22 +7,22 @@ import { Outlet } from "react-router-dom";
 
 import { NavBar } from "../components/nav";
 
+export const PREFETCH_POKEMONS = [
+  "bulbasaur",
+  "ivysaur",
+  "venusaur",
+  "charmander",
+  "charmeleon",
+  "charizard",
+  "squirtle",
+  "wartortle",
+];
+
 const Root = () => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    const prefetchPokemon = [
-      "bulbasaur",
-      "ivysaur",
-      "venusaur",
-      "charmander",
-      "charmeleon",
-      "charizard",
-      "squirtle",
-      "wartortle",
-    ];
-
-    prefetchPokemon.forEach((name) => {
+    PREFETCH_POKEMONS.forEach((name) => {
       // 포켓몬 상세 정보 프리페칭
       queryClient.prefetchQuery({
         queryKey: ["pokemonInfo", name],
