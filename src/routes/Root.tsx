@@ -42,7 +42,7 @@ const Root = () => {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <div className="fixed-scrollbar h-full dark:bg-black">
+        <div className="fixed-scrollbar h-full bg-gray-100 dark:bg-gray-900">
           <NavBar />
           <main className="mx-auto h-full max-w-7xl px-4 pt-20">
             <Outlet />
