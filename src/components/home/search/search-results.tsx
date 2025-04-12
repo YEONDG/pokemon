@@ -1,6 +1,6 @@
 import { PokemonCard } from "@/components/home/card/pokemon-card";
 import { ANIMATIONS } from "@/constants/animations";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 
 import { SearchPokemonResult } from "./search-bar";
 
