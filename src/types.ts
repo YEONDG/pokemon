@@ -10,14 +10,7 @@ export interface PokemonBasic {
 export interface PokemonAll {
   count: number;
   next: string;
-  previous: string | null;
-  results: PokemonBasic[];
-}
-
-export interface PokemonType {
-  count: number;
-  next: string;
-  previous: string | null;
+  previous?: string;
   results: PokemonBasic[];
 }
 
@@ -75,21 +68,21 @@ export interface PokemonGenera {
 }
 
 export interface PokemonImgBasicType {
-  back_default: string | null;
-  back_female: string | null;
-  back_shiny: string | null;
-  back_shiny_female: string | null;
-  front_default: string | null;
-  front_female: string | null;
-  front_shiny: string | null;
-  front_shiny_female: string | null;
+  back_default?: string;
+  back_female?: string;
+  back_shiny?: string;
+  back_shiny_female?: string;
+  front_default?: string;
+  front_female?: string;
+  front_shiny?: string;
+  front_shiny_female?: string;
 }
 
 export interface PokemonImgBasicFrontType {
-  front_default: string | null;
-  front_female: string | null;
-  front_shiny: string | null;
-  front_shiny_female: string | null;
+  front_default?: string;
+  front_female?: string;
+  front_shiny?: string;
+  front_shiny_female?: string;
 }
 
 export interface PokemonImgType extends PokemonImgBasicType {
@@ -98,12 +91,12 @@ export interface PokemonImgType extends PokemonImgBasicType {
 }
 
 export interface PokemonVersionsImgType {
-  back_default: string | null;
-  back_gray: string | null;
-  back_transparent: string | null;
-  front_default: string | null;
-  front_gray: string | null;
-  front_transparent: string | null;
+  back_default?: string;
+  back_gray?: string;
+  back_transparent?: string;
+  front_default?: string;
+  front_gray?: string;
+  front_transparent?: string;
 }
 
 export interface PokemonVersionsImgWithAnimatedType
@@ -143,18 +136,18 @@ export interface PokemonVersionsGeneration {
 
 export interface PokemonOther {
   dream_world: {
-    front_default: string | null;
-    front_female: string | null;
+    front_default?: string;
+    front_female?: string;
   };
   home: {
-    front_default: string | null;
-    front_female: string | null;
-    front_shiny: string | null;
-    front_shiny_female: string | null;
+    front_default?: string;
+    front_female?: string;
+    front_shiny?: string;
+    front_shiny_female?: string;
   };
   "official-artwork": {
-    front_default: string | null;
-    front_shiny: string | null;
+    front_default?: string;
+    front_shiny?: string;
   };
 }
 
