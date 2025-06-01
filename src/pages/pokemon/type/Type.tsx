@@ -1,6 +1,7 @@
 import { getPokemonTypeWithName } from "@/apis/pokemon/pokemon";
 import { PokemonCard } from "@/components/home/card/pokemon-card";
 import { PokemonListSkeleton } from "@/components/skeleton/pokemon-list-skeleton";
+import { pokemonQueryKeys } from "@/lib/queryKeys";
 import { PokemonTypeList } from "@/types";
 import { typeBgColor } from "@/utils/typeColor";
 import { typeConverter } from "@/utils/typeConverter";
@@ -9,11 +10,11 @@ import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
 const PokemonTypePage = () => {
-  const { type } = useParams();
+  const { type } = useParams<{ type: string }>();
 
   const { data: pokemonTypeList, isLoading } = useQuery<PokemonTypeList, Error>(
     {
-      queryKey: ["type", `${type}`],
+      queryKey: pokemonQueryKeys.type(type),
       queryFn: () => getPokemonTypeWithName(type),
       staleTime: Infinity,
     },

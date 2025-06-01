@@ -1,5 +1,6 @@
 import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
 import { ThemeProvider } from "@/components/theme-provider";
+import { pokemonQueryKeys } from "@/lib/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { useEffect } from "react";
@@ -25,14 +26,14 @@ const Root = () => {
     PREFETCH_POKEMONS.forEach((name) => {
       // 포켓몬 상세 정보 프리페칭
       queryClient.prefetchQuery({
-        queryKey: ["pokemonInfo", name],
+        queryKey: pokemonQueryKeys.info(name),
         queryFn: () => getPokemonInfoWithId(name),
         staleTime: Infinity,
       });
 
       // 포켓몬 종 정보 프리페칭
       queryClient.prefetchQuery({
-        queryKey: ["pokemonSpec", name],
+        queryKey: pokemonQueryKeys.species(name),
         queryFn: () => getPokemonSpec(name),
         staleTime: Infinity,
       });

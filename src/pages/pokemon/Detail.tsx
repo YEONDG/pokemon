@@ -2,6 +2,7 @@ import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
 import { DetailHeader } from "@/components/detail/detail-header";
 import { LoadingFallback } from "@/components/loading-fallback";
 import useScrollToTop from "@/hooks/useScrollToTop";
+import { pokemonQueryKeys } from "@/lib/queryKeys";
 import { PokemonDetailType, PokemonSpecies } from "@/types";
 import { pokemonImgSrc } from "@/utils/path";
 import { useQuery } from "@tanstack/react-query";
@@ -20,25 +21,27 @@ const PokemonImageGallery = lazy(
 const PokemonDetailPage = () => {
   useScrollToTop();
 
-  const { name: id } = useParams();
+  const { name: pokemonNameFromUrl } = useParams<{ name: string }>();
 
   const { data: pokemonInfo, isLoading: isPokemonLoading } = useQuery<
     PokemonDetailType,
     Error
   >({
-    queryKey: ["pokemonInfo", id],
-    queryFn: () => getPokemonInfoWithId(id),
-    enabled: !!id,
+    queryKey: pokemonQueryKeys.info(pokemonNameFromUrl),
+    queryFn: () => getPokemonInfoWithId(pokemonNameFromUrl),
+    enabled: !!pokemonNameFromUrl,
     staleTime: Infinity,
   });
+
+  const speciesName = pokemonInfo?.species?.name;
 
   const { data: pokemonSpeciesInfo, isLoading: isSpeciesLoading } = useQuery<
     PokemonSpecies,
     Error
   >({
-    queryKey: ["pokemonSpec", pokemonInfo?.species?.name],
-    queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
-    enabled: !!pokemonInfo?.species?.name,
+    queryKey: pokemonQueryKeys.species(speciesName),
+    queryFn: () => getPokemonSpec(speciesName),
+    enabled: !!speciesName,
     staleTime: Infinity,
   });
 

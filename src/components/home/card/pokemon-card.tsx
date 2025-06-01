@@ -1,4 +1,5 @@
 import { getPokemonInfoWithId, getPokemonSpec } from "@/apis/pokemon/pokemon";
+import { pokemonQueryKeys } from "@/lib/queryKeys";
 import { PokemonDetailType, PokemonSpecies } from "@/types";
 import { pokemonImgSrc } from "@/utils/path";
 import { useQuery } from "@tanstack/react-query";
@@ -15,16 +16,18 @@ interface PokemonsCardProps {
 
 export const PokemonCard = memo(({ name }: PokemonsCardProps) => {
   const { data: pokemonInfo } = useQuery<PokemonDetailType, Error>({
-    queryKey: ["pokemonInfo", name],
+    queryKey: pokemonQueryKeys.info(name),
     queryFn: () => getPokemonInfoWithId(name),
     enabled: !!name,
     staleTime: Infinity,
   });
 
+  const speciesName = pokemonInfo?.species?.name;
+
   const { data: speciesInfo } = useQuery<PokemonSpecies, Error>({
-    queryKey: ["pokemonSpec", pokemonInfo?.species?.name],
-    queryFn: () => getPokemonSpec(pokemonInfo?.species?.name),
-    enabled: !!pokemonInfo?.species?.name,
+    queryKey: pokemonQueryKeys.species(speciesName),
+    queryFn: () => getPokemonSpec(speciesName),
+    enabled: !!speciesName,
     staleTime: Infinity,
   });
 
