@@ -2,7 +2,7 @@ import { PokemonTypeLabel } from "../home/card/pokemon-type-label";
 import { Img } from "../ui/Img";
 
 interface PokemonMainImageProps {
-  imgSrc: string | null;
+  imgSrc?: string;
   types:
     | {
         slot: number;

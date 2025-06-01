@@ -2,7 +2,7 @@ import { useIsImgLoaded } from "@/hooks/useIsImgLoaded";
 import React from "react";
 
 interface ImgProps {
-  src: string | null;
+  src?: string;
   alt: string;
   className?: string;
   lazy?: boolean;
