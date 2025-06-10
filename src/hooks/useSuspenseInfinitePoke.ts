@@ -1,4 +1,4 @@
-import { getPoketmonListAll } from "@/apis/pokemon/pokemon";
+import { getPokemonListAll } from "@/apis/pokemon/pokemon";
 import { pokemonQueryKeys } from "@/lib/queryKeys";
 import { PokemonAll } from "@/types";
 import {
@@ -22,7 +22,7 @@ export const useSuspenseInfinitePoke = (): UseSuspenseInfinitePokeReturn => {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: pokemonQueryKeys.list(),
-      queryFn: getPoketmonListAll,
+      queryFn: getPokemonListAll,
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         const { next } = lastPage;
