@@ -1,10 +1,10 @@
 import axiosInstanse from "@/utils/axios";
 
-export const getPokemonInfoWithId = async (Id: string | undefined) => {
-  if (!Id) {
+export const getPokemonInfoWithId = async (id: string | undefined) => {
+  if (!id) {
     throw new Error("Pokemon ID is required");
   }
-  const { data } = await axiosInstanse.get(`pokemon/${Id}`);
+  const { data } = await axiosInstanse.get(`pokemon/${id}`);
   return data;
 };
 
@@ -16,11 +16,11 @@ export const getPoketmonListAll = async ({ pageParam = 0 }) => {
   return data;
 };
 
-export const getPokemonSpec = async (Id: string | undefined) => {
-  if (!Id) {
+export const getPokemonSpec = async (id: string | undefined) => {
+  if (!id) {
     throw new Error("Pokemon ID is required");
   }
-  const { data } = await axiosInstanse.get(`pokemon-species/${Id}`);
+  const { data } = await axiosInstanse.get(`pokemon-species/${id}`);
   return data;
 };
 

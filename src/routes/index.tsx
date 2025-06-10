@@ -1,5 +1,6 @@
 import ErrorPage from "@/error-page";
 import HomePage from "@/pages/Home";
+import NotFoundPage from "@/pages/NotFound";
 import PokemonDetailPage from "@/pages/pokemon/Detail";
 import PokemonTypePage from "@/pages/pokemon/type/Type";
 import { createBrowserRouter } from "react-router-dom";
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <HomePage />,
       },
       {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/pokemon/type/:type",
         element: <PokemonTypePage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

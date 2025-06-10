@@ -31,6 +31,8 @@ const PokemonDetailPage = () => {
     queryFn: () => getPokemonInfoWithId(pokemonNameFromUrl),
     enabled: !!pokemonNameFromUrl,
     staleTime: Infinity,
+    retry: 3,
+    throwOnError: true,
   });
 
   const speciesName = pokemonInfo?.species?.name;
@@ -43,6 +45,8 @@ const PokemonDetailPage = () => {
     queryFn: () => getPokemonSpec(speciesName),
     enabled: !!speciesName,
     staleTime: Infinity,
+    retry: 3,
+    throwOnError: true,
   });
 
   const imgSrc = useMemo(
