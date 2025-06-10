@@ -8,7 +8,7 @@ export const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-10 h-20 w-full bg-white/80 transition-transform duration-300 dark:bg-slate-800/80 ${isVisible ? "translate-y-0" : "-translate-y-full"} `}
+      className={`fixed top-0 z-10 flex h-16 w-full items-center border-b-2 bg-white/80 transition-transform duration-300 dark:bg-slate-800/80 ${isVisible ? "translate-y-0" : "-translate-y-full"} `}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between px-6">

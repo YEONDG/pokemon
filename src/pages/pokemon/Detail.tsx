@@ -76,7 +76,7 @@ const PokemonDetailPage = () => {
         />
       </Helmet>
 
-      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center">
+      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center pt-4">
         <DetailHeader type={type} name={pokemonDisplayName} />
 
         <main className="flex w-full flex-col items-center justify-center gap-5">
