@@ -8,5 +8,14 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+echo "Running tests..."
+npm run test
+
+# 테스트 실패 시 커밋 중단
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Commit aborted."
+  exit 1
+fi
+
 echo "Type check passed. Running lint-staged..."
 npx lint-staged

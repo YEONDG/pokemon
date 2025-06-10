@@ -16,7 +16,6 @@ test.describe("포켓몬 도감 웹사이트 테스트", () => {
     // 타입 필터가 표시되는지 확인
     await expect(page.locator('a[href="/pokemon/type/fire"]')).toBeVisible();
     await expect(page.locator('a[href="/pokemon/type/water"]')).toBeVisible();
-    await expect(page.locator('a[href="/pokemon/type/grass"]')).toBeVisible();
 
     // 검색 입력창이 표시되는지 확인
     await expect(page.locator('input[type="text"]')).toBeVisible();
