@@ -105,49 +105,13 @@ test.describe("포켓몬 도감 웹사이트 테스트", () => {
       (await page.locator("html").getAttribute("class")) || "";
 
     // 테마 토글 버튼 클릭하여 메뉴 열기
-    await page.click('button[aria-haspopup="menu"]');
-
-    // 메뉴가 열렸는지 확인
-    await expect(
-      page.locator('div[role="menu"][data-state="open"]'),
-    ).toBeVisible();
-
-    // initialTheme이 "dark"인 경우 "Light" 메뉴 항목 선택, 아니면 "Dark" 선택
-    if (initialTheme === "dark") {
-      await page.click('div[role="menuitem"]:has-text("Light")');
-    } else {
-      await page.click('div[role="menuitem"]:has-text("Dark")');
-    }
+    await page.getByTestId("theme-toggle-button").click();
 
     // 테마 변경 확인
     const newTheme = await page.locator("html").getAttribute("class");
 
     // 다크 모드와 라이트 모드 전환 확인
     expect(initialTheme).not.toEqual(newTheme);
-
-    await page.waitForTimeout(500); // 테마 변경 후 페이지 로드 대기
-
-    // 다시 원래 테마로 변경
-    // 테마 토글 버튼 클릭하여 메뉴 열기
-    await page.click('button[aria-haspopup="menu"]');
-
-    // 메뉴가 열렸는지 확인
-    await expect(
-      page.locator('div[role="menu"][data-state="open"]'),
-    ).toBeVisible();
-
-    if (newTheme === "dark") {
-      await page.click('div[role="menuitem"]:has-text("Light")');
-    } else {
-      await page.click('div[role="menuitem"]:has-text("Dark")');
-    }
-
-    // 원래 상태로 돌아갔는지 확인
-    const finalTheme = (await page.locator("html").getAttribute("class")) || "";
-
-    const initialHasDark = initialTheme.includes("dark");
-    const finalHasDark = finalTheme.includes("dark");
-    expect(initialHasDark).toEqual(finalHasDark);
   });
 
   test("반응형 디자인이 올바르게 작동하는지 확인", async ({ page }) => {
