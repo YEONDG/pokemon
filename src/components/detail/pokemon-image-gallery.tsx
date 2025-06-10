@@ -29,7 +29,7 @@ const PokemonImageGallery = ({
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full pb-20 pt-4">
       {hasSprites && <ImageDefaultContainer sprites={sprites} />}
       {hasVersions && <ImageVersionsContainer versions={versions} />}
     </section>
