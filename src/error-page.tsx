@@ -7,6 +7,15 @@ export default function ErrorPage() {
   // useRouteError 훅을 통해 발생한 에러 객체를 가져옵니다.
   const error = useRouteError();
 
+  let errorMessage: string;
+
+  if (error instanceof Error) {
+    // 이 블록 안에서 error는 `Error` 타입으로 취급됩니다.
+    errorMessage = error.message;
+  } else {
+    errorMessage = "예상치 못한 오류가 발생했습니다.";
+  }
+
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -30,7 +39,7 @@ export default function ErrorPage() {
                   <p className="font-semibold">에러 상세 정보</p>
                   <pre className="mt-2 whitespace-pre-wrap break-words">
                     {/* HTTP 상태 텍스트나 에러 메시지를 보여줍니다. */}
-                    {error.statusText || error.message}
+                    {errorMessage}
                   </pre>
                 </div>
 
