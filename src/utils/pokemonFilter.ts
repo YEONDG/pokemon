@@ -7,23 +7,40 @@ type PokemonName = {
   koreanName: string;
 };
 
+const objEntriesPokemonData = Object.entries(pokemonData as PokemonJSONData);
+
+const choseongOnlyRegex = /^[ㄱ-ㅎ]+$/;
+
 export const filterPokemon = (searchQuery: string): PokemonName[] => {
+  if (!searchQuery) {
+    return [];
+  }
+
   const lowerCaseQuery = searchQuery.toLowerCase();
 
-  return Object.entries(pokemonData as PokemonJSONData)
+  const isChoseongOnlySearch = choseongOnlyRegex.test(searchQuery);
+
+  const data = objEntriesPokemonData
     .filter(([key, value]) => {
       const lowerCaseKey = key.toLowerCase();
-      const choseongValue = getChoseong(value);
-      const choseongQuery = getChoseong(searchQuery);
 
-      return (
-        value.includes(searchQuery) ||
-        choseongValue.includes(choseongQuery) ||
-        lowerCaseKey.includes(lowerCaseQuery)
-      );
+      if (isChoseongOnlySearch) {
+        const choseongValue = getChoseong(value);
+        return (
+          choseongValue.includes(searchQuery) ||
+          lowerCaseKey.includes(lowerCaseQuery)
+        );
+      } else {
+        // 완성형 단어 또는 영어로 검색할 경우 (초성 검색 비활성화)
+        return (
+          value.includes(searchQuery) || lowerCaseKey.includes(lowerCaseQuery)
+        );
+      }
     })
     .map(([key, value]) => ({
       englishName: key,
       koreanName: value,
     }));
+
+  return data;
 };
