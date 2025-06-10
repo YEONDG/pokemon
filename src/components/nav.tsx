@@ -12,7 +12,11 @@ export const NavBar = () => {
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between px-6">
-          <Link to="/" className="m-5 flex text-3xl dark:text-slate-100">
+          <Link
+            to="/"
+            className="m-5 flex text-3xl dark:text-slate-100"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             <img src="/poke.svg" width={30} height={30} alt="포켓몬 아이콘" />
             <h1 className="hidden md:block">포켓몬도감</h1>
           </Link>

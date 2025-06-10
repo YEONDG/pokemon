@@ -2,14 +2,14 @@
 import { useSuspenseInfinitePoke } from "@/hooks/useSuspenseInfinitePoke";
 import { useStore } from "@/store/store";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 import { PokemonCard } from "./card/pokemon-card";
 
 const ITEMS_PER_ROW = 4;
 
 export const PokemonList = () => {
-  const isSearchActive = useStore((state) => state.isSearchActive);
+  const { isSearchActive, scrollPosition, setScrollPosition } = useStore();
   const listRef = useRef<HTMLDivElement | null>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -25,6 +25,17 @@ export const PokemonList = () => {
     overscan: 5,
     scrollMargin: listRef.current?.offsetTop ?? 0,
   });
+
+  // 스크롤 위치 저장
+  useLayoutEffect(() => {
+    if (scrollPosition > 0) {
+      rowVirtualizer.scrollToOffset(scrollPosition);
+    }
+
+    return () => {
+      setScrollPosition(window.scrollY);
+    };
+  }, []);
 
   useEffect(() => {
     const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
