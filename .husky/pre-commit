@@ -1,1 +1,12 @@
+# lint-staged 실행 전에 타입 체크를 먼저 실행합니다.
+echo "Running type check..."
+npm run type-check
+
+# 타입 체크에 실패하면 여기서 스크립트가 중단되고 커밋이 막힙니다.
+if [ $? -ne 0 ]; then
+  echo "TypeScript check failed. Commit aborted."
+  exit 1
+fi
+
+echo "Type check passed. Running lint-staged..."
 npx lint-staged
