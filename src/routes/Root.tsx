@@ -38,7 +38,7 @@ const Root = () => {
         staleTime: Infinity,
       });
     });
-  }, []);
+  }, [queryClient]);
 
   return (
     <>
