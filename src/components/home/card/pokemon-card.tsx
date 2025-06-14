@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { PokemonCardHeader } from "./pokemon-card-header";
 import { PokemonCardImage } from "./pokemon-card-image";
 import { PokemonCardInfo } from "./pokemon-card-info";
+import PokemonCardTypeLabel from "./pokemon-card-type-label";
 
 interface PokemonsCardProps {
   name: string;
@@ -49,19 +50,19 @@ export const PokemonCard = memo(({ name }: PokemonsCardProps) => {
   const englishName = speciesInfo?.name;
 
   return (
-    <Link
-      to={`/pokemon/${pokemonInfo?.id}`}
-      className="group flex h-72 w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-black shadow-md transition hover:border-blue-500 hover:bg-slate-300 hover:shadow-lg dark:border-white dark:bg-slate-800"
-    >
-      <div className="flex h-full w-full flex-col items-center justify-between sm:justify-end">
-        <PokemonCardHeader id={pokemonIdx} name={englishName} />
-        <PokemonCardImage
-          alt={`${koreanName} image`}
-          src={imgSrc}
-          isAnimated={isAnimated}
-        />
-        <PokemonCardInfo name={koreanName} types={pokemonInfo.types} />
-      </div>
-    </Link>
+    <div className="flex h-72 w-full flex-col items-center justify-center overflow-hidden rounded-lg border border-black shadow-md transition hover:border-blue-500 hover:bg-slate-300 hover:shadow-lg dark:border-white dark:bg-slate-800">
+      <Link to={`/pokemon/${pokemonInfo?.id}`} className="h-full w-full">
+        <div className="flex h-full w-full flex-col items-center justify-between sm:justify-end">
+          <PokemonCardHeader id={pokemonIdx} name={englishName} />
+          <PokemonCardImage
+            alt={`${koreanName} image`}
+            src={imgSrc}
+            isAnimated={isAnimated}
+          />
+          <PokemonCardInfo name={koreanName} />
+        </div>
+      </Link>
+      <PokemonCardTypeLabel types={pokemonInfo.types} />
+    </div>
   );
 });
