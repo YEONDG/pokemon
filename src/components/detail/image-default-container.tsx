@@ -19,7 +19,7 @@ export const ImageDefaultContainer = ({
         <h3 className="my-2 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
           기본 이미지
         </h3>
-        <div className="flex flex-wrap justify-center">
+        <div className="grid grid-cols-2 justify-center md:grid-cols-4">
           <Img src={sprites?.front_default} alt="front_default" />
 
           <Img src={sprites?.front_female} alt="front_female" />

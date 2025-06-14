@@ -14,12 +14,13 @@ export const ImageVersionsContainer = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col">
       <h3 className="my-2 w-full rounded-xl bg-slate-300 px-3 py-1 text-center text-3xl">
         버전별 이미지
       </h3>
-      <div className="flex flex-col items-center justify-center gap-7">
-        <div className="flex gap-4">
+      <div className="flex flex-col items-start gap-7">
+        {/* 1 세대 */}
+        <div className="grid grid-cols-2 gap-4">
           <VersionImgSprites
             sprites={versions?.["generation-i"]["red-blue"]}
             title="1세대 레드블루"
@@ -30,7 +31,9 @@ export const ImageVersionsContainer = ({
             title="1세대 옐로우"
           />
         </div>
-        <div className="flex gap-4">
+
+        {/* 2 세대 */}
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           <VersionImgSprites
             sprites={versions?.["generation-ii"].crystal}
             title="2세대 크리스탈"
@@ -44,7 +47,9 @@ export const ImageVersionsContainer = ({
             title="2세대 실버"
           />
         </div>
-        <div className="flex gap-4">
+
+        {/* 3 세대 */}
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           <VersionImgSprites
             sprites={versions?.["generation-iii"].emerald}
             title="3세대 에메랄드"
@@ -58,7 +63,9 @@ export const ImageVersionsContainer = ({
             title="3세대 루비-사파이어"
           />
         </div>
-        <div className="flex gap-4">
+
+        {/* 4 세대 */}
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           <VersionImgSprites
             sprites={versions?.["generation-iv"]["diamond-pearl"]}
             title="4세대 다이아몬드-펄"
@@ -72,13 +79,15 @@ export const ImageVersionsContainer = ({
             title="4세대 플래티넘"
           />
         </div>
-        <div className="flex gap-4">
-          <VersionImgSprites
-            sprites={versions?.["generation-v"]["black-white"]}
-            title="5세대 블랙-화이트"
-          />
-        </div>
-        <div className="flex gap-4">
+
+        {/* 5 세대 */}
+        <VersionImgSprites
+          sprites={versions?.["generation-v"]["black-white"]}
+          title="5세대 블랙-화이트"
+        />
+
+        {/* 6 세대 */}
+        <div className="grid grid-cols-2 gap-4">
           <VersionImgSprites
             sprites={versions?.["generation-vi"]["omegaruby-alphasapphire"]}
             title="6세대 오메가루비-알파사파이어"
@@ -88,12 +97,11 @@ export const ImageVersionsContainer = ({
             title="6세대 XY"
           />
         </div>
-        <div className="flex">
-          <VersionImgSprites
-            sprites={versions?.["generation-vii"]["ultra-sun-ultra-moon"]}
-            title="7세대 울트라썬-울트라문"
-          />
-        </div>
+        {/* 7 세대 */}
+        <VersionImgSprites
+          sprites={versions?.["generation-vii"]["ultra-sun-ultra-moon"]}
+          title="7세대 울트라썬-울트라문"
+        />
       </div>
     </div>
   );
