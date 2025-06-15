@@ -1,5 +1,7 @@
 # 포켓몬 도감 프로젝트 (Pokemon Encyclopedia)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/YEONDG/pokemon)
+
 ## 📖 소개
 
 이 프로젝트는 PokeAPI를 활용하여 제작된 현대적인 포켓몬 도감 웹 애플리케이션입니다. React와 TypeScript를 기반으로 제작되었으며, 사용자 친화적인 인터페이스와 다양한 기능을 제공합니다.
